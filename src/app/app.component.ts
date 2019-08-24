@@ -12,13 +12,10 @@ import { AppProvider } from './app.provider';
 export class AppComponent implements OnInit {
 
   constructor(public globals: Globals, private router: Router) {
-    console.log("constructor");
 
   }
 
   ngOnInit(): void {
-    console.log("onInit");
-
     // this.appProvider.load();
   }
 

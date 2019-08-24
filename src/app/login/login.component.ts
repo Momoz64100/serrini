@@ -13,8 +13,7 @@ export class LoginComponent {
 	password: string;
 
 	constructor(private authService: AuthService, private router: Router) { 
-        console.log("login const");
-
+		
 	}
 
 	connect() {
