@@ -34,11 +34,11 @@ import { LoginComponent } from './login/login.component';
 import { TestsComponent } from './menu/tests/tests.component';
 import { AdminComponent } from './menu/admin/admin.component';
 
-export function appProviderFactory(provider: AppProvider) {
-  return (): Promise<boolean> => { 
-    return provider.load();
-  }
-}
+// export function appProviderFactory(provider: AppProvider) {
+//   return (): Promise<boolean> => { 
+//     return provider.load();
+//   }
+// }
 
 @NgModule({
   declarations: [
@@ -60,7 +60,7 @@ export function appProviderFactory(provider: AppProvider) {
     AppRoutingModule
   ],
   providers: [
-    AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
+    // AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
     Globals,
     AuthGuard,
     UserService,
