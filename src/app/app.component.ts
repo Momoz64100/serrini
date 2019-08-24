@@ -11,12 +11,12 @@ import { AppProvider } from './app.provider';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public globals: Globals, private router: Router) {
+  constructor(public globals: Globals, private router: Router, private appProvider: AppProvider) {
 
   }
 
   ngOnInit(): void {
-    // this.appProvider.load();
+    this.appProvider.load();
   }
 
   logout() {

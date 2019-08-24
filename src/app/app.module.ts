@@ -54,7 +54,7 @@ import { AdminComponent } from './menu/admin/admin.component';
     AppRoutingModule
   ],
   providers: [
-    // AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
+    AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
     Globals,
     AuthGuard,
     UserService,
@@ -65,6 +65,6 @@ import { AdminComponent } from './menu/admin/admin.component';
 })
 export class AppModule { }
 
-// export function appProviderFactory(provider: AppProvider) {
-//   return () => provider.load();
-// }
+export function appProviderFactory(provider: AppProvider) {
+  return () => provider.load();
+}
