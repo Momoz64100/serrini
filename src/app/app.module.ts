@@ -50,7 +50,7 @@ import { AdminComponent } from './menu/admin/admin.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    // LoginRoutingModule,
+    LoginRoutingModule,
     AppRoutingModule
   ],
   providers: [
