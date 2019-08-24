@@ -1,0 +1,135 @@
+<!-- Radio -->
+<div class="row">
+    <div class="col-lg-4">
+        <div class="widget style1 navy-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="fa fa-volume-control-phone fa-5x"></i>
+                </div>
+                <div class="col-8 text-right">
+                    <span>
+                        <strong>Radio du jour</strong>
+                    </span>
+                    <h2 class="font-bold">{{ currentRadios.radioJour }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="widget style1 yellow-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="fa fa-volume-control-phone fa-5x"></i>
+                </div>
+                <div class="col-8 text-right">
+                    <span>
+                        <strong>Radio de secours</strong>
+                    </span>
+                    <h2 class="font-bold">{{ currentRadios.radioSecours }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="fa fa-volume-control-phone fa-5x"></i>
+                </div>
+                <div class="col-8 text-right">
+                    <span>
+                        <strong>Radio des guetteurs</strong>
+                    </span>
+                    <h2 class="font-bold">{{ currentRadios.radioGuetteurs }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mb-5"></div>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Messages</h5>
+            </div>
+            <div class="ibox-content ibox-heading">
+                <h3><i class="fa fa-envelope-o"></i> Messages des gradés</h3>
+                <small>Seuls les messages du chef et des officiers apparaitront ci-dessous</small>
+            </div>
+            <div class="ibox-content">
+                <div class="feed-activity-list">
+                    <div class="feed-element">
+                        <div>
+                            <small class="float-right text-navy">1m ago</small>
+                            <strong>Alberto Serrini</strong>
+                            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            </div>
+                            <small class="text-muted">24/08/2019</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Actions en attente</h5>
+                    </div>
+                    <div class="ibox-content table-responsive">
+                        <table class="table table-hover no-margins">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Message</th>
+                                    <th>Par</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="label label-warning">En attente</span> </td>
+                                    <td>Défoncer le cul de Marie Louise</td>
+                                    <td>Alberto</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-primary">Fait</span> </td>
+                                    <td>Acheter un super bolide à Vito</td>
+                                    <td>Vito</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Informations de la famille</h5>
+                    </div>
+                    <div class="ibox-content table-responsive">
+                        <table class="table table-hover no-margins">
+                            <thead>
+                                <tr>
+                                    <th>Prénom</th>
+                                    <th>Surnom</th>
+                                    <th>Téléphone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of users">
+                                    <td><strong>{{ user.prenom }}</strong></td>
+                                    <td>{{ user.surnom }}</td>
+                                    <td>{{ user.tel }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
