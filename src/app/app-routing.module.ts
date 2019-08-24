@@ -12,7 +12,7 @@ import { AuthGuard } from './auth.guard.service';
 const routes: Routes = [
   {
     path: '',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: DashboardComponent },
       { path: 'rapports-missions', component: MissionsReportsComponent },
