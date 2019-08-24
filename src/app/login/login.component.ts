@@ -12,7 +12,10 @@ export class LoginComponent {
 	login: string;
 	password: string;
 
-	constructor(private authService: AuthService, private router: Router) { }
+	constructor(private authService: AuthService, private router: Router) { 
+        console.log("login const");
+
+	}
 
 	connect() {
 		this.authService.loginByLogin(this.login, this.password).subscribe(x => {

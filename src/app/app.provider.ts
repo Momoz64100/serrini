@@ -10,6 +10,8 @@ export class AppProvider {
     }
 
     load() {
+        console.log("load");
+        
         return new Promise((resolve, reject) => {
             var users: Users[];
             this.userService.getUsers().subscribe(data => {
