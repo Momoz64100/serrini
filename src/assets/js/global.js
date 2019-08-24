@@ -1,9 +1,13 @@
 $(function () {
-    // $('.sidebar-collapse a').click(function () {
-    //     console.log('CLICKED')
-    //     // remove existing active class inside li elements
-    //     $('li').removeClass('active');
-    //     // add class to current clicked element
-    //     $(this).closest('li').addClass('active');
-    // });
+    $(window).on('load', function () {
+        $('.sidebar-collapse a').click(function () {
+            $('li').removeClass('active');
+            $(this).closest('li').addClass('active');
+        });
+
+        $('.collapser a').click(function (event) {
+            $('.collapser').toggleClass('active');
+        });
+    });
 });
+
