@@ -34,6 +34,12 @@ import { LoginComponent } from './login/login.component';
 import { TestsComponent } from './menu/tests/tests.component';
 import { AdminComponent } from './menu/admin/admin.component';
 
+export function appProviderFactory(provider: AppProvider) {
+  return (): Promise<boolean> => { 
+    return provider.load();
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +70,3 @@ import { AdminComponent } from './menu/admin/admin.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export function appProviderFactory(provider: AppProvider) {
-  return () => provider.load();
-}
