@@ -11,7 +11,7 @@ import { AppProvider } from './app.provider';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private globals: Globals, private router: Router, private appProvider: AppProvider) {
+  constructor(public globals: Globals, private router: Router, private appProvider: AppProvider) {
 
   }
 

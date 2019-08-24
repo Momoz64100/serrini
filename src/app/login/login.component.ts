@@ -9,8 +9,8 @@ import { Globals } from '../globals';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-	private login: string;
-	private password: string;
+	login: string;
+	password: string;
 
 	constructor(private authService: AuthService, private router: Router) { }
 
