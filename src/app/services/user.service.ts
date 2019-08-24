@@ -1,3 +1,4 @@
+import 'firebase/firestore'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Users } from '../entities/users';
 import { Injectable } from '@angular/core';

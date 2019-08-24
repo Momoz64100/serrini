@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { tap, delay } from 'rxjs/operators';
 import { Globals } from './globals';
 import { UserService } from './services/user.service';
 import { Users } from './entities/users';
