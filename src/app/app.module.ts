@@ -33,6 +33,7 @@ import { MissionsReportsComponent } from './menu/missions-reports/missions-repor
 import { LoginComponent } from './login/login.component';
 import { TestsComponent } from './menu/tests/tests.component';
 import { AdminComponent } from './menu/admin/admin.component';
+import { MessageService } from './services/message.service';
 
 // export function appProviderFactory(provider: AppProvider) {
 //   return (): Promise<boolean> => { 
@@ -60,12 +61,14 @@ import { AdminComponent } from './menu/admin/admin.component';
     AppRoutingModule
   ],
   providers: [
+    AppProvider,
     // AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
     Globals,
     AuthGuard,
+    AngularFirestore,
     UserService,
     RadioService,
-    AngularFirestore
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

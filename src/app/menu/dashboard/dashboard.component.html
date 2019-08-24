@@ -59,13 +59,12 @@
             </div>
             <div class="ibox-content">
                 <div class="feed-activity-list">
-                    <div class="feed-element">
+                    <div class="feed-element" *ngFor="let message of messages">
                         <div>
-                            <small class="float-right text-navy">1m ago</small>
-                            <strong>Alberto Serrini</strong>
-                            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                            </div>
-                            <small class="text-muted">24/08/2019</small>
+                            <small class="float-right text-navy">{{ message.minutesAgo }}</small>
+                            <strong>{{ message.user }}</strong>
+                            <div>{{ message.message }}</div>
+                            <small class="text-muted">{{ message.date }}</small>
                         </div>
                     </div>
                 </div>
