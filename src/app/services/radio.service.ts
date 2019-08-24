@@ -1,3 +1,5 @@
+import * as firebase from 'firebase'
+import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Radio } from '../entities/radio';
