@@ -10,12 +10,14 @@ export class AuthorizedHtmlViewDirective implements OnChanges {
     @Input('appAuthorizedHtmlView') authorizedHtmlView: string;
 
     ngOnChanges(): void {
-        var authorizedRoles: string[] = this.authorizedHtmlView.split(';'); 
-        authorizedRoles.push('ADMIN');        
-        var myRoles: string[] = this.globals.currentUser.roles.split(';');
-        
-        const found = authorizedRoles.some(x => myRoles.includes(x));            
-        if(!found) 
-            this.el.nativeElement.remove();
+        if(this.globals.currentUser.roles != undefined) {
+            var authorizedRoles: string[] = this.authorizedHtmlView.split(';'); 
+            authorizedRoles.push('ADMIN');        
+            var myRoles: string[] = this.globals.currentUser.roles.split(';');
+            
+            const found = authorizedRoles.some(x => myRoles.includes(x));            
+            if(!found) 
+                this.el.nativeElement.remove();
+        }
     }
 }
