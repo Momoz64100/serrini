@@ -27,7 +27,7 @@
                 <!-- <li>
                     <a routerLink="/tests"><i class="fa fa-th-large"></i> <span class="nav-label">Tests</span></a>
                 </li> -->
-                <li [appAuthorizedHtmlView]="'ADMIN'">
+                <li *ngIf="globals.isAdmin">
                     <a routerLink="/admin"><i class="fa fa-th-large"></i> <span
                             class="nav-label">Administration</span></a>
                 </li>

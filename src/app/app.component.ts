@@ -12,11 +12,9 @@ import { AppProvider } from './app.provider';
 export class AppComponent implements OnInit {
 
   constructor(public globals: Globals, private router: Router, private authService: AuthService) {
-
   }
 
   ngOnInit(): void {
-    console.log("test");
     this.authService.load();
   }
 
@@ -24,6 +22,7 @@ export class AppComponent implements OnInit {
     this.globals.isLoggedIn = false;
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('userId');
+    localStorage.removeItem('isAdmin');
     this.router.navigate(['login']);
   }
 }

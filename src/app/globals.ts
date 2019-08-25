@@ -5,4 +5,5 @@ import { Users } from './entities/users';
 export class Globals {
 	isLoggedIn: boolean = JSON.parse(localStorage.getItem('loggedIn') || 'false'); 
 	currentUser: Users = {};
+	isAdmin: boolean = JSON.parse(localStorage.getItem('isAdmin') || 'false'); 
 }
