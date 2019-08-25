@@ -69,8 +69,8 @@ export class DashboardComponent implements OnInit {
   deleteAction(id: string) {
     this.workingSerice.deleteWorking(id);
   }
-  changeStatusAction(id: string) {
-    this.workingSerice.updateWorking(id);
+  changeStatusAction(id: string, value: any) {
+    this.workingSerice.updateWorking(id, value);
   }
 
   deleteMessage(id: string) {

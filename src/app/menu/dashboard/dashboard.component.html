@@ -65,8 +65,9 @@
                             <strong>{{ message.user }}</strong>
                             <div>{{ message.message }}</div>
                             <small class="text-muted">{{ message.date }}</small>
-                            <button [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'" (click)="deleteMessage(message.id)" type="button" style="float: right;"
-                                class="btn btn-default btn-circle"><i class="fa fa-trash-o text-red"></i></button>
+                            <button [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'" (click)="deleteMessage(message.id)"
+                                type="button" style="float: right;" class="btn btn-default btn-circle"><i
+                                    class="fa fa-trash-o text-red"></i></button>
                         </div>
                     </div>
                 </div>
@@ -100,8 +101,34 @@
                                     <td style="display: flex;" [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'">
                                         <a class="mr-1" (click)="deleteAction(workingDay.id)"><i
                                                 class="fa fa-trash-o text-red"></i></a>
-                                        <a data-toggle="tooltip" title="Passe le status à En cours" (click)="changeStatusAction(workingDay.id)"><i
+                                        <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id"><i
                                                 class="fa fa-pencil-square-o"></i></a>
+
+                                        <div id="modal-edit-status-{{workingDay.id}}" class="modal fade"
+                                            style="display: none;" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 b-r">
+                                                                <h3 class="m-t-none m-b">Modifier le status de l'action
+                                                                </h3>
+                                                                <select #actionSelected
+                                                                    class="form-control m-b" name="account">
+                                                                    <option selected>A faire</option>
+                                                                    <option selected>En cours</option>
+                                                                    <option>Urgent</option>
+                                                                    <option>Fait</option>
+                                                                </select>
+                                                                <button (click)="changeStatusAction(workingDay.id, actionSelected.value)" data-dismiss="modal"
+                                                                    class="btn btn-primary btn-sm"
+                                                                    type="submit">Modifier le status</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
