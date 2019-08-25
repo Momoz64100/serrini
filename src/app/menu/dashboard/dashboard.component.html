@@ -65,6 +65,7 @@
                             <strong>{{ message.user }}</strong>
                             <div>{{ message.message }}</div>
                             <small class="text-muted">{{ message.date }}</small>
+                            <button (click)="deleteMessage(message.id)" type="button" style="float: right;" class="btn btn-default btn-circle"><i class="fa fa-trash-o text-red"></i></button>
                         </div>
                     </div>
                 </div>
@@ -89,15 +90,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><span class="label label-warning">En attente</span> </td>
-                                    <td>Défoncer le cul de Marie Louise</td>
-                                    <td>Alberto</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="label label-primary">Fait</span> </td>
-                                    <td>Acheter un super bolide à Vito</td>
-                                    <td>Vito</td>
+                                <tr *ngFor="let workingDay of workingsDay">
+                                    <td><span
+                                            class="label {{ workingDay.status | workingTypeColor }}">{{ workingDay.status }}</span>
+                                    </td>
+                                    <td>{{ workingDay.message }}</td>
+                                    <td>{{ workingDay.user }}</td>
+                                    <td [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'">
+                                        <a class="mr-2" (click)="deleteAction(workingDay.id)"><i
+                                                class="fa fa-trash-o text-red"></i></a>
+                                        <a (click)="changeStatusAction(workingDay.id)"><i
+                                                class="fa fa-pencil-square-o"></i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

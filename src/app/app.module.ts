@@ -21,6 +21,7 @@ import { Globals } from './globals';
 import { AuthGuard } from './auth.guard.service';
 import { UserService } from './services/user.service';
 import { RadioService } from './services/radio.service';
+import { MessageService } from './services/message.service';
 
 //Directives
 import { AuthorizedHtmlViewDirective } from './directives/authorized-html-view';
@@ -33,19 +34,21 @@ import { MissionsReportsComponent } from './menu/missions-reports/missions-repor
 import { LoginComponent } from './login/login.component';
 import { TestsComponent } from './menu/tests/tests.component';
 import { AdminComponent } from './menu/admin/admin.component';
-import { MessageService } from './services/message.service';
+import { WorkingDayService } from './services/working-day.service ';
+import { WorkingTypeColorPipe } from './pipes/working-type.pipe';
 
-// export function appProviderFactory(provider: AppProvider) {
-//   return (): Promise<boolean> => { 
-//     return provider.load();
-//   }
-// }
+export function appProviderFactory(provider: AppProvider) {
+  return (): Promise<boolean> => { 
+    return provider.load();
+  }
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     Page404Component,
+    WorkingTypeColorPipe,
     DashboardComponent,
     MissionsReportsComponent,
     TestsComponent,
@@ -61,14 +64,15 @@ import { MessageService } from './services/message.service';
     AppRoutingModule
   ],
   providers: [
-    AppProvider,
-    // AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
+    // AppProvider,
+    AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
     Globals,
     AuthGuard,
     AngularFirestore,
     UserService,
     RadioService,
-    MessageService
+    MessageService,
+    WorkingDayService
   ],
   bootstrap: [AppComponent]
 })

@@ -15,6 +15,7 @@ export class MessageService {
   }
 
   createMessage(message: MessageGrades) {
+    message.timestamp = new Date();
     return this.db.collection(this.basePath).add(message);
   }
 
@@ -22,7 +23,7 @@ export class MessageService {
     this.db.doc(this.basePath + message.id).update(message);
   }
 
-  deleteMessage(messageId: MessageGrades) {
+  deleteMessage(messageId: string) {
     this.db.doc(this.basePath + messageId).delete();
   }
 }
