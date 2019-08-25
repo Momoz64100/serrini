@@ -8,6 +8,7 @@ import { AdminComponent } from './menu/admin/admin.component';
 import { TestsComponent } from './menu/tests/tests.component';
 
 import { AuthGuard } from './auth.guard.service';
+import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'rapports-missions', component: MissionsReportsComponent },
+      { path: 'objectifs', component: ObjectifsComponent },
       { path: 'admin', component: AdminComponent },
       { path: 'tests', component: TestsComponent },
       { path: '**', component: Page404Component }

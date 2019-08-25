@@ -36,6 +36,8 @@ import { TestsComponent } from './menu/tests/tests.component';
 import { AdminComponent } from './menu/admin/admin.component';
 import { WorkingDayService } from './services/working-day.service ';
 import { WorkingTypeColorPipe } from './pipes/working-type.pipe';
+import { ObjectifsService } from './services/objectifs.service';
+import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
 
 // export function appProviderFactory(provider: AppProvider) {
 //   return (): Promise<boolean> => { 
@@ -49,11 +51,12 @@ import { WorkingTypeColorPipe } from './pipes/working-type.pipe';
     LoginComponent,
     Page404Component,
     WorkingTypeColorPipe,
+    AuthorizedHtmlViewDirective,
     DashboardComponent,
     MissionsReportsComponent,
     TestsComponent,
     AdminComponent,
-    AuthorizedHtmlViewDirective
+    ObjectifsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { WorkingTypeColorPipe } from './pipes/working-type.pipe';
     UserService,
     RadioService,
     MessageService,
-    WorkingDayService
+    WorkingDayService,
+    ObjectifsService
   ],
   bootstrap: [AppComponent]
 })

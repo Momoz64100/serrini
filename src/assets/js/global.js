@@ -8,6 +8,11 @@ $(function () {
         $('.collapser a').click(function (event) {
             $('.collapser').toggleClass('active');
         });
+
+        $('.check-link').click(function (event) {
+            // $(this).toggleClass('active');
+            // console.log($(this).cheked);            
+        });
     });
 });
 

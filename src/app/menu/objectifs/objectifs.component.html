@@ -1,0 +1,56 @@
+<!-- <input id="temp" name="temp" type="temp" class="form-control" #temp>
+<button type="button" class="btn btn-success" (click)="createObjectif(temp.value)">Ajout</button> -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+                <h2>Objectifs à court terme</h2>
+                <ul class="todo-list m-t small-list ui-sortable">
+                    <li *ngFor="let objectif of objectifsCourtTerme">
+                        <a [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
+                                class="fa fa-check-square"></i></a>
+                        <span class="m-l-xs"
+                            [className]="objectif.clicked ? 'todo-completed' : ''">{{ objectif.text }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+                <h2>Objectifs à moyen terme</h2>
+                <ul class="todo-list m-t small-list ui-sortable">
+                    <li *ngFor="let objectif of objectifsMoyenTerme">
+                        <a [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
+                                class="fa fa-check-square"></i></a>
+                        <span class="m-l-xs"
+                            [className]="objectif.clicked ? 'todo-completed' : ''">{{ objectif.text }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+                <h2>Objectifs à long terme</h2>
+                <ul class="todo-list m-t small-list ui-sortable">
+                    <li *ngFor="let objectif of objectifsLongTerme">
+                        <a [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
+                                class="fa fa-check-square"></i></a>
+                        <span class="m-l-xs"
+                            [className]="objectif.clicked ? 'todo-completed' : ''">{{ objectif.text }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
