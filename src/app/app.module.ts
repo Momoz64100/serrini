@@ -37,11 +37,11 @@ import { AdminComponent } from './menu/admin/admin.component';
 import { WorkingDayService } from './services/working-day.service ';
 import { WorkingTypeColorPipe } from './pipes/working-type.pipe';
 
-export function appProviderFactory(provider: AppProvider) {
-  return (): Promise<boolean> => { 
-    return provider.load();
-  }
-}
+// export function appProviderFactory(provider: AppProvider) {
+//   return (): Promise<boolean> => { 
+//     return provider.load();
+//   }
+// }
 
 @NgModule({
   declarations: [
@@ -64,8 +64,8 @@ export function appProviderFactory(provider: AppProvider) {
     AppRoutingModule
   ],
   providers: [
-    // AppProvider,
-    AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
+    AppProvider,
+    // AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
     Globals,
     AuthGuard,
     AngularFirestore,
