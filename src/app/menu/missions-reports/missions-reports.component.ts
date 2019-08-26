@@ -52,5 +52,6 @@ export class MissionsReportsComponent implements OnInit {
       message: "Un nouveau rapport de mission vient d'être publié !"
     });
     this.missionsReportsService.createMission(this.currentMission);
+    this.currentMission = {};
   }
 }
