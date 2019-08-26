@@ -1,7 +1,7 @@
 export class MissionsReports {
     id?: string;
     user?: string;
-    tile?: string;
+    title?: string;
     message?: string;
     entities?: string;
     date?: string;
