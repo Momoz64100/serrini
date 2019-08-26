@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Objectifs } from 'src/app/entities/objectifs';
 import { ObjectifsService } from 'src/app/services/objectifs.service';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-objectifs',
@@ -12,7 +13,9 @@ export class ObjectifsComponent implements OnInit {
   objectifsMoyenTerme: Objectifs[];
   objectifsLongTerme: Objectifs[];
 
-  constructor(private objectifsService: ObjectifsService) { }
+  constructor(
+    private globals: Globals,
+    private objectifsService: ObjectifsService) { }
 
   ngOnInit() {
     this.objectifsService.getObjectifs().subscribe(data => {
@@ -24,7 +27,6 @@ export class ObjectifsComponent implements OnInit {
       });
 
       this.objectifsCourtTerme = allObjectifs.filter(x => x.type == "Court terme");
-      console.log(this.objectifsCourtTerme);      
       this.objectifsMoyenTerme = allObjectifs.filter(x => x.type == "Moyen terme");
       this.objectifsLongTerme = allObjectifs.filter(x => x.type == "Long terme");
     });

@@ -7,6 +7,7 @@ import { MessageGrades } from 'src/app/entities/message-grades';
 import { MessageService } from 'src/app/services/message.service';
 import { WorkingDayService } from 'src/app/services/working-day.service ';
 import { WorkingDay } from 'src/app/entities/working-day';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
   currentRadios: Radio = {};
 
   constructor(
+    private globals: Globals,
     private userService: UserService,
     private radioService: RadioService,
     private messageService: MessageService,

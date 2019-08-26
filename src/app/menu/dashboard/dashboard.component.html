@@ -65,7 +65,7 @@
                             <strong>{{ message.user }}</strong>
                             <div>{{ message.message }}</div>
                             <small class="text-muted">{{ message.date }}</small>
-                            <button [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'" (click)="deleteMessage(message.id)"
+                            <button [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" (click)="deleteMessage(message.id)"
                                 type="button" style="float: right;" class="btn btn-default btn-circle"><i
                                     class="fa fa-trash-o text-red"></i></button>
                         </div>
@@ -98,7 +98,7 @@
                                     </td>
                                     <td>{{ workingDay.message }}</td>
                                     <td>{{ workingDay.user }}</td>
-                                    <td style="display: flex;" [appAuthorizedHtmlView]="'S_CHEF;S_BRASDROIT'">
+                                    <td style="display: flex;" [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles">
                                         <a class="mr-1" (click)="deleteAction(workingDay.id)"><i
                                                 class="fa fa-trash-o text-red"></i></a>
                                         <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id"><i

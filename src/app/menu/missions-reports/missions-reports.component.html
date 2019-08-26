@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>Rapports de missions</h5>
+                <div class="ibox-tools">
+                    <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-report">Nouveau rapport</a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-hover issue-tracker">
+                        <tbody>
+                            <tr *ngFor="let mission of missions">
+                                <td><span class="label label-primary">Public</span></td>
+                                <td class="issue-info">
+                                    <strong>{{ mission.user }}</strong>
+                                    <small>{{ mission.title }}</small>
+                                </td>
+                                <td>Le {{ mission.date }}</td>
+                                <td class="text-right">
+                                    <button class="btn btn-white btn-xs" data-toggle="modal" [attr.data-target]="'#view-report-' + mission.id">
+                                        <i class="fa fa-eye fa-lg text-navy"></i>
+                                    </button>
+                                    <!-- Modal view report -->
+                                    <div class="modal inmodal fade" id="view-report-{{mission.id}}" tabindex="-1"
+                                        role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span
+                                                            aria-hidden="true">&times;</span><span
+                                                            class="sr-only">Fermer</span></button>
+                                                    <h4 class="modal-title">Rapport de {{ mission.user }}</h4>
+                                                    <small class="font-bold">{{ mission.title }}</small>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        {{ mission.message }}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-white"
+                                                        data-dismiss="modal">Fermer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal new report -->
+<div class="modal inmodal fade" id="new-report" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Nouveau rapport de mission</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Titre</label>
+                                <input [(ngModel)]="currentMission.title" id="title" name="title" type="text"
+                                    class="form-control">
+                                <small>Détails bref du rapport permettant une visualisation rapide</small>
+                            </div>
+                            <div class="form-group"><label>Personne(s)/Goupe(s) concerné(s)</label>
+                                <input [(ngModel)]="currentMission.entities" id="entities" name="entities" type="text"
+                                    type="text" class="form-control">
+                            </div>
+                            <div class="form-group"><label>Rapport</label>
+                                <textarea [(ngModel)]="currentMission.message" id="message" name="message"
+                                    class="form-control" rows="8"></textarea>
+                            </div>
+                            <div class="form-group" id="date-rapport">
+                                <label class="font-normal">Date</label>
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input [(ngModel)]="currentMission.date" id="date" name="date" type="text"
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createMission()">Enregistrer
+                    le rapport</button>
+            </div>
+        </div>
+    </div>
+</div>

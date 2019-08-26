@@ -38,6 +38,7 @@ import { WorkingDayService } from './services/working-day.service ';
 import { WorkingTypeColorPipe } from './pipes/working-type.pipe';
 import { ObjectifsService } from './services/objectifs.service';
 import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
+import { MissionsReportsService } from './services/missions-reports.service';
 
 // export function appProviderFactory(provider: AppProvider) {
 //   return (): Promise<boolean> => { 
@@ -56,7 +57,8 @@ import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
     MissionsReportsComponent,
     TestsComponent,
     AdminComponent,
-    ObjectifsComponent
+    ObjectifsComponent,
+    MissionsReportsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
     RadioService,
     MessageService,
     WorkingDayService,
-    ObjectifsService
+    ObjectifsService,
+    MissionsReportsService
   ],
   bootstrap: [AppComponent]
 })
