@@ -23,7 +23,11 @@
                         <li><a routerLink="/registre">Registre</a></li>
                     </ul>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true">
-                        <li><a routerLink="/rapports-missions">Rapports de mission</a></li>
+                        <li>
+                            <a routerLink="/rapports-missions">Rapports de mission
+                                <span *ngIf="globals.currentUser.newReport == true" class="pastille label label-info float-right">New</span>
+                            </a>
+                        </li>
                     </ul>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true">
                         <li><a routerLink="/objectifs">Objectifs</a></li>

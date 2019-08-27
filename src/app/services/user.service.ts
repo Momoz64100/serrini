@@ -23,9 +23,22 @@ export class UserService {
   updateUser(user: Users) {
     this.db.doc(this.basePath + user.id).update(user);
   }
-  
+
   updateTel(id: string, tel: string) {
-    this.db.doc(this.basePath + id).update({ tel : tel});
+    this.db.doc(this.basePath + id).update({ tel: tel });
+  }
+
+  updateAllUserNewReport() {
+    firebase.firestore().collection(this.basePath).get().then(x => {
+      x.forEach(data => {
+        this.db.doc(this.basePath + data.id).update({ newReport: true });
+      })
+    });
+  }
+
+  updateReportReaded(id: string) {
+    console.log("newReport false");
+    this.db.doc(this.basePath + id).update({ newReport: false });
   }
 
   deleteUser(userId: string) {

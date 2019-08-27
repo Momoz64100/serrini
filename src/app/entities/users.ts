@@ -7,5 +7,6 @@ export class Users {
     surnom?: string;
     tel?: string;
     roles?: string;
+    newReport?: boolean;
     creationDate?: string;
 }
