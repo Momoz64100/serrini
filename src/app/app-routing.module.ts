@@ -17,7 +17,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'rapports-missions', component: MissionsReportsComponent },
-      { path: 'annuaire', component: AnnuaireComponent },
+      { path: 'registre', component: AnnuaireComponent },
       { path: 'objectifs', component: ObjectifsComponent },
       { path: 'admin', component: AdminComponent },
       { path: '**', component: Page404Component }
