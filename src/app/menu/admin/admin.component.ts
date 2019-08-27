@@ -43,6 +43,10 @@ export class AdminComponent implements OnInit {
         break;
       case 'editRadio':
         this.radioService.updateRadio(this.currentRadios);
+        this.messageService.createMessage({
+          user: "ADMIN",
+          message: "Les radios viennent d'être modifié par " + this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom + ' !'
+        });
         break;
       case 'addMessageGrades':
         this.currentMessage.user = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;

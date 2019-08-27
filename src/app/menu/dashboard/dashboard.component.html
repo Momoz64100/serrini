@@ -99,11 +99,10 @@
                                     <td>{{ workingDay.message }}</td>
                                     <td>{{ workingDay.user }}</td>
                                     <td style="display: flex;" [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles">
+                                        <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id" class="mr-1"><i
+                                            class="fa fa-pencil-square-o"></i></a>
                                         <a class="mr-1" (click)="deleteAction(workingDay.id)"><i
                                                 class="fa fa-trash-o text-red"></i></a>
-                                        <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id"><i
-                                                class="fa fa-pencil-square-o"></i></a>
-
                                         <div id="modal-edit-status-{{workingDay.id}}" class="modal fade"
                                             style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog">

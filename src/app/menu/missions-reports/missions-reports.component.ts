@@ -20,7 +20,6 @@ export class MissionsReportsComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-
   ngOnInit() {
     this.currentMission.date = new Date().toLocaleDateString();
     $('#date-rapport .input-group.date').datepicker({
@@ -49,7 +48,7 @@ export class MissionsReportsComponent implements OnInit {
     this.currentMission.date = $('#date').val();
     this.messageService.createMessage({
       user: "ADMIN",
-      message: "Un nouveau rapport de mission vient d'être publié !"
+      message: "Un nouveau rapport de mission vient d'être publié par " + this.currentMission.user + " !"
     });
     this.missionsReportsService.createMission(this.currentMission);
     this.currentMission = {};
