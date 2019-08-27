@@ -13,8 +13,8 @@ declare var $: any;
 export class AnnuaireComponent implements OnInit {
 
   annuaires: Annuaire[];
+  groups: Group[];  
   currentAnnuaire: Annuaire = {};
-  groups: Group[];
   currentGroup: Group = {};
 
   constructor(
