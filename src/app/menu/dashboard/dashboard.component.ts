@@ -8,7 +8,6 @@ import { MessageService } from 'src/app/services/message.service';
 import { WorkingDayService } from 'src/app/services/working-day.service ';
 import { WorkingDay } from 'src/app/entities/working-day';
 import { Globals } from 'src/app/globals';
-import { User } from 'firebase';
 declare var $: any;
 
 @Component({
@@ -23,7 +22,7 @@ export class DashboardComponent implements OnInit {
   currentRadios: Radio = {};
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private userService: UserService,
     private radioService: RadioService,
     private messageService: MessageService,
