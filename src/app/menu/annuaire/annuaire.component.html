@@ -4,6 +4,7 @@
       <div class="ibox-title">
         <h5>Annuaire téléphonique privé du clan Serrini</h5>
         <div class="ibox-tools">
+          <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-group">Nouveau groupe</a>
           <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-annuaire">Nouveau numéro</a>
         </div>
       </div>
@@ -16,6 +17,7 @@
             <tr>
               <th>Prénom / Nom</th>
               <th>Téléphone</th>
+              <th>Groupe</th>
               <th>Commentaire</th>
               <th>Inscrit par</th>
             </tr>
@@ -24,6 +26,7 @@
             <tr class="gradeX" *ngFor="let annuaire of annuaires">
               <td>{{ annuaire.name }}</td>
               <td>{{ annuaire.tel }}</td>
+              <td>{{ annuaire.group }}</td>
               <td>{{ annuaire.comment }}</td>
               <td>{{ annuaire.byUser }}</td>
             </tr>
@@ -40,7 +43,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
             class="sr-only">Close</span></button>
-        <h4 class="modal-title">Nouveau numéro de téléphone</h4>
+        <h4 class="modal-title">Nouvelle entrée</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -49,12 +52,18 @@
               <div class="form-group">
                 <label>Prenom Nom</label>
                 <input [(ngModel)]="currentAnnuaire.name" id="name" name="name" type="text" class="form-control">
-                <small>exemple : Vito Moretti</small>
+                <small>Exemple : Vito Moretti</small>
               </div>
               <div class="form-group">
-                <label>Phone</label>
-                <input id="tel" name="tel" type="text" type="text"
-                  class="form-control" data-mask="9999-9999" placeholder="">
+                <label>Téléphone</label>
+                <input id="tel" name="tel" type="text" type="text" class="form-control" data-mask="9999-9999"
+                  placeholder="">
+              </div>
+              <div class="form-group">
+                <label>Appartient au groupe</label>
+                <select [(ngModel)]="currentAnnuaire.group" class="form-control m-b" name="account">
+                  <option *ngFor="let group of groups">{{ group.name }}</option>
+                </select>
               </div>
               <div class="form-group"><label>Commentaire</label>
                 <input [(ngModel)]="currentAnnuaire.comment" id="comment" name="comment" type="text" type="text"
@@ -68,6 +77,36 @@
         <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createAnnuaire()">Enregistrer
           le numéro</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal new group -->
+<div class="modal inmodal fade" id="new-group" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+            class="sr-only">Close</span></button>
+        <h4 class="modal-title">Nouveau groupe</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <form role="form">
+              <div class="form-group">
+                <label>Nom du groupe</label>
+                <input [(ngModel)]="currentGroup.name" id="groupname" name="groupname" type="text" class="form-control">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createGroup()">Ajouter le
+          groupe</button>
       </div>
     </div>
   </div>

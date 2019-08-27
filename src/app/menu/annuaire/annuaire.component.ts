@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Annuaire } from 'src/app/entities/annuaire';
 import { Globals } from 'src/app/globals';
 import { AnnuaireService } from 'src/app/services/annuaire.service';
+import { Group } from 'src/app/entities/group';
 declare var $: any;
 
 @Component({
@@ -13,6 +14,8 @@ export class AnnuaireComponent implements OnInit {
 
   annuaires: Annuaire[];
   currentAnnuaire: Annuaire = {};
+  groups: Group[];
+  currentGroup: Group = {};
 
   constructor(
     private globals: Globals,
@@ -32,6 +35,15 @@ export class AnnuaireComponent implements OnInit {
         } as Annuaire
       }).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
     });
+
+    this.annuaireService.getGroups().subscribe(data => {
+      this.groups = data.map(x => {
+        return {
+          id: x.payload.doc.id,
+          ...x.payload.doc.data()
+        } as Group
+      }).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+    });
   }
 
   createAnnuaire() {
@@ -40,5 +52,10 @@ export class AnnuaireComponent implements OnInit {
     this.annuaireService.createAnnuaire(this.currentAnnuaire);
     this.currentAnnuaire = {};
     $('#tel').val("");
+  }
+
+  createGroup() {
+    this.annuaireService.createGroup(this.currentGroup);
+    this.currentGroup = {};
   }
 }
