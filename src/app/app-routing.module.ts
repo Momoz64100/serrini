@@ -5,10 +5,10 @@ import { Page404Component } from './page404/page404.component';
 import { DashboardComponent } from './menu/dashboard/dashboard.component';
 import { MissionsReportsComponent } from './menu/missions-reports/missions-reports.component';
 import { AdminComponent } from './menu/admin/admin.component';
-import { TestsComponent } from './menu/tests/tests.component';
 
 import { AuthGuard } from './auth.guard.service';
 import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
+import { AnnuaireComponent } from './menu/annuaire/annuaire.component';
 
 const routes: Routes = [
   {
@@ -17,9 +17,9 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'rapports-missions', component: MissionsReportsComponent },
+      { path: 'annuaire', component: AnnuaireComponent },
       { path: 'objectifs', component: ObjectifsComponent },
       { path: 'admin', component: AdminComponent },
-      { path: 'tests', component: TestsComponent },
       { path: '**', component: Page404Component }
     ]
   }

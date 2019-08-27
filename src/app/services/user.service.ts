@@ -23,6 +23,10 @@ export class UserService {
   updateUser(user: Users) {
     this.db.doc(this.basePath + user.id).update(user);
   }
+  
+  updateTel(id: string, tel: string) {
+    this.db.doc(this.basePath + id).update({ tel : tel});
+  }
 
   deleteUser(userId: string) {
     this.db.doc(this.basePath + userId).delete();

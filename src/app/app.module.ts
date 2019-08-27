@@ -32,19 +32,14 @@ import { Page404Component } from './page404/page404.component';
 import { DashboardComponent } from './menu/dashboard/dashboard.component';
 import { MissionsReportsComponent } from './menu/missions-reports/missions-reports.component';
 import { LoginComponent } from './login/login.component';
-import { TestsComponent } from './menu/tests/tests.component';
 import { AdminComponent } from './menu/admin/admin.component';
 import { WorkingDayService } from './services/working-day.service ';
 import { WorkingTypeColorPipe } from './pipes/working-type.pipe';
 import { ObjectifsService } from './services/objectifs.service';
 import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
 import { MissionsReportsService } from './services/missions-reports.service';
-
-// export function appProviderFactory(provider: AppProvider) {
-//   return (): Promise<boolean> => { 
-//     return provider.load();
-//   }
-// }
+import { AnnuaireComponent } from './menu/annuaire/annuaire.component';
+import { AnnuaireService } from './services/annuaire.service';
 
 @NgModule({
   declarations: [
@@ -55,10 +50,10 @@ import { MissionsReportsService } from './services/missions-reports.service';
     AuthorizedHtmlViewDirective,
     DashboardComponent,
     MissionsReportsComponent,
-    TestsComponent,
     AdminComponent,
     ObjectifsComponent,
-    MissionsReportsComponent
+    MissionsReportsComponent,
+    AnnuaireComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +65,6 @@ import { MissionsReportsService } from './services/missions-reports.service';
   ],
   providers: [
     AppProvider,
-    // AppProvider, { provide: APP_INITIALIZER, useFactory: appProviderFactory, deps: [AppProvider], multi: true },
     Globals,
     AuthGuard,
     AngularFirestore,
@@ -79,7 +73,8 @@ import { MissionsReportsService } from './services/missions-reports.service';
     MessageService,
     WorkingDayService,
     ObjectifsService,
-    MissionsReportsService
+    MissionsReportsService,
+    AnnuaireService
   ],
   bootstrap: [AppComponent]
 })

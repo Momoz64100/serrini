@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Users } from 'src/app/entities/users';
 import { Radio } from 'src/app/entities/radio';
@@ -8,6 +8,8 @@ import { MessageService } from 'src/app/services/message.service';
 import { WorkingDayService } from 'src/app/services/working-day.service ';
 import { WorkingDay } from 'src/app/entities/working-day';
 import { Globals } from 'src/app/globals';
+import { User } from 'firebase';
+declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +28,7 @@ export class DashboardComponent implements OnInit {
     private radioService: RadioService,
     private messageService: MessageService,
     private workingSerice: WorkingDayService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
@@ -40,7 +42,7 @@ export class DashboardComponent implements OnInit {
 
     this.messageService.getMessages().subscribe(data => {
       this.messages = data.map(x => {
-        var minutesAgo = Math.floor(((new Date().getTime() - new Date(x.payload.doc.get('timestamp').seconds * 1000).getTime())/1000/60) << 0);    
+        var minutesAgo = Math.floor(((new Date().getTime() - new Date(x.payload.doc.get('timestamp').seconds * 1000).getTime()) / 1000 / 60) << 0);
         var dbDate = new Date(x.payload.doc.get('timestamp').seconds * 1000).toLocaleDateString();
         var dateEquals = new Date().toLocaleDateString() == dbDate;
 
@@ -71,12 +73,17 @@ export class DashboardComponent implements OnInit {
   deleteAction(id: string) {
     this.workingSerice.deleteWorking(id);
   }
-  
-  changeStatusAction(id: string, value: any) {
-    this.workingSerice.updateWorking(id, value);
+
+  changeStatusAction(id: string, value: any, message: any) {
+    $(".modal-backdrop").remove();
+    this.workingSerice.updateWorking(id, value, message);
   }
 
   deleteMessage(id: string) {
     this.messageService.deleteMessage(id);
+  }
+
+  updateTel(tel: any) {
+    this.userService.updateTel(this.globals.currentUser.id, tel);
   }
 }

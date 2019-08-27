@@ -19,8 +19,9 @@ export class WorkingDayService {
     return this.db.collection(this.basePath).add(working);
   }
 
-  updateWorking(workingId: string, value: string) {
+  updateWorking(workingId: string, value: string, message: string) {  
     this.db.doc(this.basePath + workingId).update({ status: value });
+    this.db.doc(this.basePath + workingId).update({ message: message });
   }
 
   deleteWorking(workingId: string) {

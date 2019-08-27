@@ -65,9 +65,9 @@
                             <strong>{{ message.user }}</strong>
                             <div>{{ message.message }}</div>
                             <small class="text-muted">{{ message.date }}</small>
-                            <button [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" (click)="deleteMessage(message.id)"
-                                type="button" style="float: right;" class="btn btn-default btn-circle"><i
-                                    class="fa fa-trash-o text-red"></i></button>
+                            <button [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles"
+                                (click)="deleteMessage(message.id)" type="button" style="float: right;"
+                                class="btn btn-default btn-circle"><i class="fa fa-trash-o text-red"></i></button>
                         </div>
                     </div>
                 </div>
@@ -98,30 +98,39 @@
                                     </td>
                                     <td>{{ workingDay.message }}</td>
                                     <td>{{ workingDay.user }}</td>
-                                    <td style="display: flex;" [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles">
-                                        <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id" class="mr-1"><i
-                                            class="fa fa-pencil-square-o"></i></a>
+                                    <td style="display: flex;" [appAuthorizedHtmlView]="'S_CHEF'"
+                                        [userRoles]="globals.currentUser.roles">
+                                        <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id"
+                                            class="mr-1"><i class="fa fa-pencil-square-o"></i></a>
                                         <a class="mr-1" (click)="deleteAction(workingDay.id)"><i
                                                 class="fa fa-trash-o text-red"></i></a>
+
                                         <div id="modal-edit-status-{{workingDay.id}}" class="modal fade"
-                                            style="display: none;" aria-hidden="true">
+                                            aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-sm-12 b-r">
-                                                                <h3 class="m-t-none m-b">Modifier le status de l'action
+                                                                <h3 class="m-t-none m-b">Modifier l'action
                                                                 </h3>
-                                                                <select #actionSelected
+                                                                <div class="form-group"><label>Rapport</label>
+                                                                    <textarea value="{{workingDay.message}}"
+                                                                        #actionMessage class="form-control"
+                                                                        rows="4"></textarea>
+                                                                </div>
+                                                                <select value="{{workingDay.status}}" id="wstatus"
+                                                                    name="wstatus" #actionSelected
                                                                     class="form-control m-b" name="account">
                                                                     <option selected>A faire</option>
                                                                     <option selected>En cours</option>
                                                                     <option>Urgent</option>
                                                                     <option>Fait</option>
                                                                 </select>
-                                                                <button (click)="changeStatusAction(workingDay.id, actionSelected.value)" data-dismiss="modal"
-                                                                    class="btn btn-primary btn-sm"
-                                                                    type="submit">Modifier le status</button>
+                                                                <button data-dismiss="modal"
+                                                                    class="btn btn-primary btn-sm" type="button"
+                                                                    (click)="changeStatusAction(workingDay.id, actionSelected.value, actionMessage.value)">Modifier
+                                                                    le status</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -159,6 +168,29 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <button class="btn btn-primary btn-sm mt-2" style="float: right" data-toggle="modal"
+                            data-target="#modal-edit-tel">Éditer mon numéro</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Editer le numéro de téléphone -->
+<div id="modal-edit-tel" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 b-r">
+                        <h3 class="m-t-none m-b">Modifier mon numéro</h3>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input value="{{ globals.currentUser.tel }}" #tel id="tel" name="tel" type="text" type="text" class="form-control"
+                                data-mask="9999-9999" placeholder="">
+                        </div>
+                        <button data-dismiss="modal" class="btn btn-primary btn-sm" type="button" (click)="updateTel(tel.value)">Modifier mon muméro</button>
                     </div>
                 </div>
             </div>
