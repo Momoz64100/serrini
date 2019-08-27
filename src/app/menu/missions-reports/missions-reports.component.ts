@@ -53,4 +53,8 @@ export class MissionsReportsComponent implements OnInit {
     this.missionsReportsService.createMission(this.currentMission);
     this.currentMission = {};
   }
+
+  deleteRapport(id: string) {
+    this.missionsReportsService.deleteMission(id);
+  }
 }

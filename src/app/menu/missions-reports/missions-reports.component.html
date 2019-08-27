@@ -22,8 +22,14 @@
                                 </td>
                                 <td>Le {{ mission.date }}</td>
                                 <td class="text-right">
-                                    <button class="btn btn-white btn-xs" data-toggle="modal" [attr.data-target]="'#view-report-' + mission.id">
+                                    <button class="btn btn-white btn-xs btn-circle mr-1" data-toggle="modal"
+                                        [attr.data-target]="'#view-report-' + mission.id">
                                         <i class="fa fa-eye fa-lg text-navy"></i>
+                                    </button>
+                                    <button [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles"
+                                        (click)="deleteRapport(mission.id)" type="button"
+                                        class="btn btn-default btn-circle">
+                                        <i class="fa fa-trash-o text-red"></i>
                                     </button>
                                     <!-- Modal view report -->
                                     <div class="modal inmodal fade" id="view-report-{{mission.id}}" tabindex="-1"
