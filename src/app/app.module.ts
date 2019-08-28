@@ -40,6 +40,8 @@ import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
 import { MissionsReportsService } from './services/missions-reports.service';
 import { AnnuaireComponent } from './menu/annuaire/annuaire.component';
 import { AnnuaireService } from './services/annuaire.service';
+import { WeedComponent } from './menu/weed/weed.component';
+import { WeedService } from './services/weed.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { AnnuaireService } from './services/annuaire.service';
     AdminComponent,
     ObjectifsComponent,
     MissionsReportsComponent,
-    AnnuaireComponent
+    AnnuaireComponent,
+    WeedComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ import { AnnuaireService } from './services/annuaire.service';
     WorkingDayService,
     ObjectifsService,
     MissionsReportsService,
-    AnnuaireService
+    AnnuaireService,
+    WeedService
   ],
   bootstrap: [AppComponent]
 })

@@ -24,7 +24,7 @@ export class UserService {
     this.db.doc(this.basePath + user.id).update(user);
   }
 
-  updateTel(id: string, tel: string) {
+  updateTel(id: string, tel: string) {    
     this.db.doc(this.basePath + id).update({ tel: tel });
   }
 
@@ -37,7 +37,6 @@ export class UserService {
   }
 
   updateReportReaded(id: string) {
-    console.log("newReport false");
     this.db.doc(this.basePath + id).update({ newReport: false });
   }
 

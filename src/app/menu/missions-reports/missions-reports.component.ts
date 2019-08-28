@@ -49,10 +49,6 @@ export class MissionsReportsComponent implements OnInit {
     this.currentMission.isConfidential = false;
     this.currentMission.user = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
     this.currentMission.date = $('#date').val();
-    // this.messageService.createMessage({
-    //   user: "ADMIN",
-    //   message: "Un nouveau rapport de mission vient d'être publié par " + this.currentMission.user + " !"
-    // });
     this.missionsReportsService.createMission(this.currentMission);
     this.userService.updateAllUserNewReport();
     this.currentMission = {};

@@ -9,6 +9,7 @@ import { AdminComponent } from './menu/admin/admin.component';
 import { AuthGuard } from './auth.guard.service';
 import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
 import { AnnuaireComponent } from './menu/annuaire/annuaire.component';
+import { WeedComponent } from './menu/weed/weed.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'rapports-missions', component: MissionsReportsComponent },
       { path: 'registre', component: AnnuaireComponent },
+      { path: 'weed', component: WeedComponent },
       { path: 'objectifs', component: ObjectifsComponent },
       { path: 'admin', component: AdminComponent },
       { path: '**', component: Page404Component }
