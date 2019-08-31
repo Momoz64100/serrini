@@ -16,7 +16,7 @@ export class MissionsReportsComponent implements OnInit {
   currentMission: MissionsReports = {};
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private missionsReportsService: MissionsReportsService,
     private messageService: MessageService,
     private userService: UserService

@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
           id: x.payload.doc.id,
           ...x.payload.doc.data()
         } as WorkingDay
-      }).sort((a, b) => a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0)
+      }).sort((a, b) => a.status > b.status ? -1 : a.status < b.status ? 1 : 0)
     });
   }
 
