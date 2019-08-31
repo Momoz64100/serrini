@@ -42,7 +42,7 @@ export class WeedComponent implements OnInit {
           id: x.payload.doc.id,
           ...x.payload.doc.data()
         } as Weed
-      }).sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0)
+      }).sort((a, b) => a.date > b.date ? -1 : a.date < b.date ? 1 : 0)
       
       this.revenuGlobalDealder = 0;
       this.revenuJour = 0;
