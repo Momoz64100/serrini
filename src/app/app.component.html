@@ -20,14 +20,18 @@
                 <li class="collapser" [appAuthorizedHtmlView]="'SERRINI'" [userRoles]="globals.currentUser.roles">
                     <i class="fa fa-th-large i-submenu"></i> <span class="nav-label nav-grey-text">Clan Serrini</span>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                        <li>
+                            <a routerLink="/rapports-missions">Rapports de mission
+                                <span *ngIf="globals.currentUser.newReport == true"
+                                    class="pastille label label-info float-right">New</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true">
                         <li><a routerLink="/registre">Registre</a></li>
                     </ul>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true">
-                        <li>
-                            <a routerLink="/rapports-missions">Rapports de mission
-                                <span *ngIf="globals.currentUser.newReport == true" class="pastille label label-info float-right">New</span>
-                            </a>
-                        </li>
+                        <li><a routerLink="/finances">Finances</a></li>
                     </ul>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true">
                         <li><a routerLink="/weed">Weed</a></li>

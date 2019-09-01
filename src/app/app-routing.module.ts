@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard.service';
 import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
 import { AnnuaireComponent } from './menu/annuaire/annuaire.component';
 import { WeedComponent } from './menu/weed/weed.component';
+import { FinancesComponent } from './menu/finances/finances.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'rapports-missions', component: MissionsReportsComponent },
+      { path: 'finances', component: FinancesComponent },
       { path: 'registre', component: AnnuaireComponent },
       { path: 'weed', component: WeedComponent },
       { path: 'objectifs', component: ObjectifsComponent },

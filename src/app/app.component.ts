@@ -3,6 +3,7 @@ import { Globals } from './globals';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { AppProvider } from './app.provider';
+import { DashboardComponent } from './menu/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',

@@ -88,8 +88,6 @@ export class WeedComponent implements OnInit {
       this.weedService.createStockWeed(this.currentWeedStock);
     else
       this.weedService.updateStockWeed(this.currentWeedStock);
-
-    console.log(this.currentWeedStock);
     this.currentWeedStock = {};
   }
 }

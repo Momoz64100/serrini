@@ -42,6 +42,8 @@ import { AnnuaireComponent } from './menu/annuaire/annuaire.component';
 import { AnnuaireService } from './services/annuaire.service';
 import { WeedComponent } from './menu/weed/weed.component';
 import { WeedService } from './services/weed.service';
+import { FinancesComponent } from './menu/finances/finances.component';
+import { FinancesService } from './services/finances.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { WeedService } from './services/weed.service';
     ObjectifsComponent,
     MissionsReportsComponent,
     AnnuaireComponent,
-    WeedComponent
+    WeedComponent,
+    FinancesComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { WeedService } from './services/weed.service';
     ObjectifsService,
     MissionsReportsService,
     AnnuaireService,
-    WeedService
+    WeedService,
+    FinancesService
   ],
   bootstrap: [AppComponent]
 })
