@@ -10,6 +10,7 @@ export class FinancesService {
 
     basePath: string = 'finances-objectif/';
     basePathRevenus: string = 'finances-revenus/';
+    basePathRevenusGlobal: string = 'finances-revenus-global/';
     basePathContributors: string = 'finances-contributors/';
 
     getObjectifs() {
@@ -40,13 +41,32 @@ export class FinancesService {
         return this.db.collection(this.basePathRevenus, x => x.where('userId', '==', userId)).snapshotChanges();
     }
 
-    updateRevenus(revenus: FinanceRevenus) {
-        return this.db.doc(this.basePathRevenus + revenus.id).update({ value: revenus.value, updateDate: new Date().toLocaleDateString() });
-    }
-
     createRevenus(revenus: FinanceRevenus) {
         revenus.creationDate = new Date().toLocaleDateString();
         revenus.updateDate = new Date().toLocaleDateString();
         return this.db.collection(this.basePathRevenus).add(revenus);
+    }
+
+    updateRevenus(revenus: FinanceRevenus) {
+        return this.db.doc(this.basePathRevenus + revenus.id).update({ value: revenus.value, updateDate: new Date().toLocaleDateString() });
+    }
+
+    // Revenus global
+    getRevenusGlobal() {
+        return this.db.collection(this.basePathRevenusGlobal).snapshotChanges();
+    }
+
+    getRevenusGlobalByUser(userId: string) {
+        return this.db.collection(this.basePathRevenusGlobal, x => x.where('userId', '==', userId)).snapshotChanges();
+    }
+
+    createRevenusGlobal(revenus: FinanceRevenus) {
+        revenus.creationDate = new Date().toLocaleDateString();
+        revenus.updateDate = new Date().toLocaleDateString();
+        return this.db.collection(this.basePathRevenusGlobal).add(revenus);
+    }
+
+    updateRevenusGlobal(revenus: FinanceRevenus) {
+        return this.db.doc(this.basePathRevenusGlobal + revenus.id).update({ value: revenus.value, updateDate: new Date().toLocaleDateString() });
     }
 }

@@ -7,7 +7,7 @@
         </div>
         <div class="col-8 text-right">
           <span> Revenu du jour </span>
-          <h2 class="font-bold">$ {{ revenuJour }}</h2>
+          <h2 class="font-bold">{{ revenuJour | number: '2.' }} $</h2>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-8 text-right">
           <span> Revenus global du dealer </span>
-          <h2 class="font-bold">$ {{ revenuGlobalDealder }}</h2>
+          <h2 class="font-bold">{{ revenuGlobalDealder | number: '2.' }} $</h2>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="col-8 text-right">
           <span> Revenu potentiel avec les graines </span>
-          <h2 class="font-bold">$ {{ revenuPotentielGraine }}</h2>
+          <h2 class="font-bold">{{ revenuPotentielGraine | number: '2.' }} $</h2>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
               <td>{{ weed.date }}</td>
               <td>{{ weed.vendor }}</td>
               <td>{{ weed.quantity }}</td>
-              <td>{{ weed.quantity * 600}} €</td>
+              <td>{{ weed.quantity * 600  | number: '2.'}} €</td>
             </tr>
           </tbody>
         </table>
