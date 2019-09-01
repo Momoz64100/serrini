@@ -7,7 +7,7 @@
         </div>
         <div class="col-8 text-right">
           <span>Déjà acquis (tous les membres compris)</span>
-          <h2 class="font-bold">{{ revenusAcquis | number: '2.' }} $</h2>
+          <h2 class="font-bold">{{ revenusAcquis + revenusAcquisGlobal | number: '2.' }} $</h2>
         </div>
       </div>
     </div>
@@ -38,10 +38,15 @@
       </div>
       <div class="objectifs-bloc">
         <div class="objectif" *ngFor="let objectif of objectifs">
-          <div *ngIf="objectif.isPrincipal" class="star-icon">
-            <i class="fa fa-star fa-2x yellow-icon" aria-hidden="true"></i>
+          <div class="star-icon">
+            <i *ngIf="objectif.isPrincipal" class="fa fa-star fa-2x yellow-icon" aria-hidden="true"></i>
+            <i *ngIf="objectif.isCompleted" class="fa fa-check-circle fa-2x text-navy" aria-hidden="true"></i>
           </div>
           <div class="top-bloc">
+            <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="mr-1"
+              (click)="updateObjectifOk(objectif.id)">
+              <i class="fa fa-check fa-lg text-navy" aria-hidden="true"></i>
+            </a>
             <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="mr-1"
               (click)="updateObjectif(objectif.id)">
               <i class="fa fa-star fa-lg yellow-icon" aria-hidden="true"></i>
@@ -54,10 +59,10 @@
             Coût : {{ objectif.value | number: '2.' }} $
           </div>
           <div class="percentage">
-            {{ objectif.isPrincipal ? getPercentage(objectif.value) : 0 }}%
+            {{ objectif.isPrincipal ? getPercentage(objectif.value) :  objectif.isCompleted ? 100 : 0 }}%
           </div>
-          <div *ngIf="objectif.isPrincipal" class="progress progress-mini">
-            <div class="progress-bar" [style.width.%]="getPercentage(objectif.value)"></div>
+          <div *ngIf="objectif.isPrincipal || objectif.isCompleted" class="progress progress-mini">
+            <div class="progress-bar" [style.width.%]="objectif.isCompleted ? 100 : getPercentage(objectif.value)"></div>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ export class FinanceObjectif {
     name?: string;
     value?: number;
     isPrincipal?: boolean;
+    isCompleted?: boolean;
     creationDate?: string;
 }
 

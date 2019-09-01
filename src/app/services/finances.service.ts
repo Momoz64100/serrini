@@ -19,6 +19,7 @@ export class FinancesService {
 
     createObjectif(objectif: FinanceObjectif) {
         objectif.isPrincipal = false;
+        objectif.isCompleted = false;
         objectif.creationDate = new Date().toLocaleDateString();
         return this.db.collection(this.basePath).add(objectif);
     }
@@ -30,6 +31,10 @@ export class FinancesService {
             })
             this.db.doc(this.basePath + id).update({ isPrincipal: true, updateDate: new Date().toLocaleDateString() });
         });
+    }
+
+    updateObjectifOk(id: string) {
+        this.db.doc(this.basePath + id).update({ isCompleted: true, isPrincipal: false, updateDate: new Date().toLocaleDateString() });
     }
 
     // Revenus

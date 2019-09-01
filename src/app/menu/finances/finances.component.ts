@@ -37,7 +37,7 @@ export class FinancesComponent implements OnInit {
       }).sort((a, b) => a.isPrincipal > b.isPrincipal ? -1 : a.isPrincipal < b.isPrincipal ? 1 : 0)
 
       this.revenusTotal = 0;
-      this.objectifs.forEach(x => this.revenusTotal += x.value);
+      this.objectifs.forEach(x => this.revenusTotal += !x.isCompleted ? x.value : 0);
     });
 
     this.financesService.getRevenus().subscribe(data => {
@@ -117,6 +117,10 @@ export class FinancesComponent implements OnInit {
   updateObjectif(id: string) {
     this.financesService.updateObjectif(id);
   }
+
+  updateObjectifOk(id: string) {
+    this.financesService.updateObjectifOk(id);
+  }  
 
   getPercentage(value: number) {
     return Math.floor((this.revenusAcquis + this.revenusAcquisGlobal) / value  * 100);
