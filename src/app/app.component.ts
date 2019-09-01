@@ -3,7 +3,6 @@ import { Globals } from './globals';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { AppProvider } from './app.provider';
-import { DashboardComponent } from './menu/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +11,12 @@ import { DashboardComponent } from './menu/dashboard/dashboard.component';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public globals: Globals, private router: Router, private authService: AuthService) {
-  }
+  constructor(
+    public globals: Globals,
+    private router: Router,
+    private authService: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.authService.load();
   }
 

@@ -45,6 +45,11 @@ import { WeedService } from './services/weed.service';
 import { FinancesComponent } from './menu/finances/finances.component';
 import { FinancesService } from './services/finances.service';
 
+export function loadProvider(provider: AppProvider): Function 
+{
+  return () => { return provider.load() }; 
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +76,7 @@ import { FinancesService } from './services/finances.service';
   ],
   providers: [
     AppProvider,
+    { provide: APP_INITIALIZER, useFactory:loadProvider, deps: [AppProvider], multi: true },
     Globals,
     AuthGuard,
     AngularFirestore,

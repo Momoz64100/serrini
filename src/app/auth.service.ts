@@ -48,10 +48,10 @@ export class AuthService {
 
 				users.map(x => {
 					if (x.id === localStorage.getItem('userId')) {
-						localStorage.setItem('loggedIn', 'true');
-						localStorage.setItem('userId', x.id);
 						this.globals.isLoggedIn = true;
 						this.globals.currentUser = x;
+						localStorage.setItem('loggedIn', 'true');
+						localStorage.setItem('userId', x.id);
 						resolve(true);
 					}
 				});

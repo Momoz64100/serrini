@@ -5,11 +5,11 @@ import { Globals } from './globals';
 
 @Injectable()
 export class AppProvider {
-    constructor(private userService: UserService, private globals: Globals) {
+    constructor(
+        public globals: Globals,
+        private userService: UserService) { }
 
-    }
-
-    load() : Promise<boolean> {
+    load(): Promise<boolean> {
         return new Promise((resolve, reject) => {
             var users: Users[];
             this.userService.getUsers().subscribe(data => {
@@ -19,7 +19,7 @@ export class AppProvider {
                         ...x.payload.doc.data()
                     } as Users
                 });
-                
+
                 users.map(x => {
                     if (x.id === localStorage.getItem('userId')) {
                         localStorage.setItem('loggedIn', 'true');

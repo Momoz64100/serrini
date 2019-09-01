@@ -13,7 +13,7 @@ export class UserService {
   getUsers() {
     return this.db.collection(this.basePath).snapshotChanges();
   }
-
+  
   createUser(user: Users) {
     user.creationDate = new Date().toLocaleDateString();
     user.login = user.login.toLowerCase();
