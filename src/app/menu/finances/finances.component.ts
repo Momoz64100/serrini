@@ -119,6 +119,6 @@ export class FinancesComponent implements OnInit {
   }
 
   getPercentage(value: number) {
-    return Math.floor(this.revenusAcquis / value  * 100);
+    return Math.floor((this.revenusAcquis + this.revenusAcquisGlobal) / value  * 100);
   }
 }

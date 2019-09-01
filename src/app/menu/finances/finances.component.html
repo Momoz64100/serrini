@@ -6,26 +6,13 @@
           <i class="fa fa-trophy fa-5x"></i>
         </div>
         <div class="col-8 text-right">
-          <span>Déjà acquis (gradés uniquement)</span>
+          <span>Déjà acquis (tous les membres compris)</span>
           <h2 class="font-bold">{{ revenusAcquis | number: '2.' }} $</h2>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
-      <div class="widget style1">
-        <div class="row">
-          <div class="col-4 text-center">
-            <i class="fa fa-trophy fa-5x"></i>
-          </div>
-          <div class="col-8 text-right">
-            <span>Ce que peuvent investir les membres (hors gradés)</span>
-            <h2 class="font-bold">{{ revenusAcquisGlobal | number: '2.' }} $</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  <div class="col-lg-4">
+  <div class="col-lg-4 offset-4">
     <div class="widget style1">
       <div class="row">
         <div class="col-4 text-center">
@@ -39,7 +26,6 @@
     </div>
   </div>
 </div>
-
 <div class="row">
   <div class="col-lg-8">
     <div class="ibox ">
@@ -56,7 +42,8 @@
             <i class="fa fa-star fa-2x yellow-icon" aria-hidden="true"></i>
           </div>
           <div class="top-bloc">
-            <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="mr-1" (click)="updateObjectif(objectif.id)">
+            <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="mr-1"
+              (click)="updateObjectif(objectif.id)">
               <i class="fa fa-star fa-lg yellow-icon" aria-hidden="true"></i>
             </a>
             <div class="name">
@@ -102,27 +89,28 @@
       </div>
     </div>
     <div class="ibox">
-        <div class="ibox-title">
-          <h5>Revenus des membres du clan</h5>
-        </div>
-        <div class="ibox-content">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Possession</th>
-                <th>Revenus</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let revenu of revenusGlobal">
-                <td>{{ revenu.userName }}</td>
-                <td>{{ revenu.value | number: '2.' }} $</td>
-              </tr>
-            </tbody>
-          </table>
-          <button class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#edit-revenus-global">Éditer mes revenus</button>
-        </div>
+      <div class="ibox-title">
+        <h5>Revenus des membres du clan</h5>
       </div>
+      <div class="ibox-content">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Possession</th>
+              <th>Revenus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let revenu of revenusGlobal">
+              <td>{{ revenu.userName }}</td>
+              <td>{{ revenu.value | number: '2.' }} $</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#edit-revenus-global">Éditer mes
+          revenus</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -206,38 +194,39 @@
 
 <!-- Modal revenus global -->
 <div class="modal inmodal fade" id="edit-revenus-global" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-              class="sr-only">Close</span></button>
-          <h4 class="modal-title">Mes revenus</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-12">
-              <form role="form">
-                <div class="form-group">
-                  <label>Revenus actuels</label>
-                  <br>
-                  <small>La somme exacte de votre compte en banque</small>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-addon">$</span>
-                    </div>
-                    <input [(ngModel)]="currentRevenusGlobal.value" id="revenusglobalvalue" name="revenusglobalvalue" type="number"
-                      type="number" class="form-control">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+            class="sr-only">Close</span></button>
+        <h4 class="modal-title">Mes revenus</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <form role="form">
+              <div class="form-group">
+                <label>Revenus actuels</label>
+                <br>
+                <small>La somme exacte de votre compte en banque</small>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-addon">$</span>
                   </div>
+                  <input [(ngModel)]="currentRevenusGlobal.value" id="revenusglobalvalue" name="revenusglobalvalue"
+                    type="number" type="number" class="form-control">
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createRevenusGlobal()">Enregistrer mes
-            revenus</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createRevenusGlobal()">Enregistrer
+          mes
+          revenus</button>
       </div>
     </div>
   </div>
+</div>
