@@ -13,11 +13,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     public globals: Globals,
-    private router: Router,
-    private authService: AuthService) { }
+    private router: Router) { }
 
   ngOnInit() {
-    // this.authService.load();
   }
 
   logout() {

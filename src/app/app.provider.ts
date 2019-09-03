@@ -9,8 +9,7 @@ export class AppProvider {
         public globals: Globals,
         private userService: UserService) { }
 
-    load(): Promise<boolean> {
-        console.log("ça passe dans le load");        
+    load(): Promise<boolean> {    
         return new Promise((resolve, reject) => {
             var users: Users[];
             this.userService.getUsers().subscribe(data => {
