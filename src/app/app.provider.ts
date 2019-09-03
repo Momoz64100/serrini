@@ -10,6 +10,7 @@ export class AppProvider {
         private userService: UserService) { }
 
     load(): Promise<boolean> {
+        console.log("ça passe dans le load");        
         return new Promise((resolve, reject) => {
             var users: Users[];
             this.userService.getUsers().subscribe(data => {
@@ -25,10 +26,11 @@ export class AppProvider {
                         localStorage.setItem('loggedIn', 'true');
                         localStorage.setItem('userId', x.id);
                         this.globals.isLoggedIn = true;
-                        this.globals.currentUser = x;
-                        resolve(true);
+                        this.globals.currentUser = x;                        
                     }
                 });
+
+                resolve(true);
             });
         })
     }
