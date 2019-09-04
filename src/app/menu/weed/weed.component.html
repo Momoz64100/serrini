@@ -6,7 +6,7 @@
           <i class="fa fa-trophy fa-5x"></i>
         </div>
         <div class="col-8 text-right">
-          <span> Revenu du jour </span>
+          <span> Revenu du mois </span>
           <h2 class="font-bold">{{ revenuJour | number: '2.' }} $</h2>
         </div>
       </div>
@@ -61,7 +61,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let weed of weeds">
-              <td>{{ weed.date }}</td>
+              <td>{{ weed.date | date: 'dd/MM/yyyy' }}</td>
               <td>{{ weed.vendor }}</td>
               <td>{{ weed.quantity }}</td>
               <td>{{ weed.quantity * 600  | number: '2.'}} €</td>

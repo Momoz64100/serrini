@@ -62,6 +62,7 @@
               <div class="form-group">
                 <label>Appartient au groupe</label>
                 <select [(ngModel)]="currentAnnuaire.group" class="form-control m-b" name="account">
+                  <option disabled hidden [value]="A0">Aucun</option>
                   <option *ngFor="let group of groups">{{ group.name }}</option>
                 </select>
               </div>

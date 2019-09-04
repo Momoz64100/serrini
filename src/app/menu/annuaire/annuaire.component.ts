@@ -48,7 +48,7 @@ export class AnnuaireComponent implements OnInit {
 
   createAnnuaire() {
     this.currentAnnuaire.byUser = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
-    this.currentAnnuaire.tel = $('#tel').val(),
+    this.currentAnnuaire.tel = $('#tel').val();
     this.annuaireService.createAnnuaire(this.currentAnnuaire);
     this.currentAnnuaire = {};
     $('#tel').val("");

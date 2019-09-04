@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Weed, WeedStock } from 'src/app/entities/weed';
 import { WeedService } from 'src/app/services/weed.service';
 import { Globals } from 'src/app/globals';
+import { Timestamp } from 'rxjs';
+import { DatesHelper } from 'src/app/helpers/dates.helper';
 declare var $: any;
 
 @Component({
@@ -21,32 +23,34 @@ export class WeedComponent implements OnInit {
 
   constructor(
     public globals: Globals,
-    private weedService: WeedService
+    private weedService: WeedService,
+    private datesHelper: DatesHelper
   ) { }
 
   ngOnInit() {
-    this.currentWeed.date = new Date().toLocaleDateString();
-    $('#date-weed .input-group.date').datepicker({
-      todayBtn: "linked",
-      keyboardNavigation: true,
-      forceParse: false,
-      calendarWeeks: true,
-      autoclose: true,
-      format: 'dd/mm/yyyy',
-      locale: 'fr'
+    $(function () {
+      $('#date-weed .input-group.date').datepicker({
+        todayBtn: "linked",
+        keyboardNavigation: true,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        format: 'dd/mm/yyyy',
+        locale: 'fr'
+      }).datepicker("setDate", new Date());
     });
-
     this.weedService.getWeed().subscribe(data => {
       this.weeds = data.map(x => {
         return {
           id: x.payload.doc.id,
-          ...x.payload.doc.data()
+          ...x.payload.doc.data(),
+          date: new Date(x.payload.doc.get('date').seconds * 1000)
         } as Weed
       }).sort((a, b) => a.date > b.date ? -1 : a.date < b.date ? 1 : 0)
-      
+
       this.revenuGlobalDealder = 0;
       this.revenuJour = 0;
-      this.weeds.forEach(x => this.revenuJour += x.date == new Date().toLocaleDateString() ? (x.quantity * 600) : 0);
+      this.weeds.forEach(x => this.revenuJour += new Date().getMonth() == x.date.getMonth() ? (x.quantity * 600) : 0);
       this.weeds.forEach(x => this.revenuGlobalDealder += (x.quantity * 600));
     });
 
@@ -63,8 +67,8 @@ export class WeedComponent implements OnInit {
     });
 
     this.weedService.getStockWeedByUser(this.globals.currentUser.id).subscribe(x => {
-      if(x.length > 0) {
-        this.currentWeedStock =  x[0].payload.doc.data();
+      if (x.length > 0) {
+        this.currentWeedStock = x[0].payload.doc.data();
         this.currentWeedStock.id = x[0].payload.doc.id;
         this.update = true;
       }
@@ -76,7 +80,7 @@ export class WeedComponent implements OnInit {
   }
 
   createWeed() {
-    this.currentWeed.date = $('#date').val();
+    this.currentWeed.date = this.datesHelper.parse($('#date').val());
     this.weedService.createWeed(this.currentWeed);
     this.currentWeed = {};
   }

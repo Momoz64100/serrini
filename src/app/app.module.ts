@@ -44,6 +44,7 @@ import { WeedComponent } from './menu/weed/weed.component';
 import { WeedService } from './services/weed.service';
 import { FinancesComponent } from './menu/finances/finances.component';
 import { FinancesService } from './services/finances.service';
+import { DatesHelper } from './helpers/dates.helper';
 
 export function loadProvider(provider: AppProvider): Function 
 {
@@ -78,6 +79,7 @@ export function loadProvider(provider: AppProvider): Function
     AppProvider,
     { provide: APP_INITIALIZER, useFactory:loadProvider, deps: [AppProvider], multi: true },
     Globals,
+    DatesHelper,
     AuthGuard,
     AngularFirestore,
     UserService,

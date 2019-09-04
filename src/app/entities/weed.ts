@@ -2,7 +2,7 @@ export class Weed {
     id?: string;
     vendor?: string;
     quantity?: number;
-    date?: string;
+    date?: Date;
     creationDate?: string;
 }
 
