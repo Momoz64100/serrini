@@ -8,6 +8,7 @@ import { Globals } from 'src/app/globals';
 import { MessageService } from 'src/app/services/message.service';
 import { WorkingDay } from 'src/app/entities/working-day';
 import { WorkingDayService } from 'src/app/services/working-day.service ';
+import { EffectifsService } from 'src/app/services/effectifs.service';
 
 @Component({
   selector: 'app-admin',
@@ -17,11 +18,13 @@ import { WorkingDayService } from 'src/app/services/working-day.service ';
 export class AdminComponent implements OnInit {
 
   constructor(
+    public globals: Globals,
     private userService: UserService,
     private radioService: RadioService,
     private messageService: MessageService,
     private workingService: WorkingDayService,
-    private globals: Globals) { }
+    private effectifsService: EffectifsService
+    ) { }
 
   currentUser: Users = {};
   currentRadios: Radio = {};
@@ -39,6 +42,7 @@ export class AdminComponent implements OnInit {
     switch (type) {
       case 'addUser':
         this.userService.createUser(this.currentUser);
+        this.effectifsService.createEmptyEffectif(this.globals.currentUser.id, this.currentUser.prenom);
         this.currentUser = {};
         break;
       case 'editRadio':

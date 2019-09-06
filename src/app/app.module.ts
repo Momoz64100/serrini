@@ -44,7 +44,9 @@ import { WeedComponent } from './menu/weed/weed.component';
 import { WeedService } from './services/weed.service';
 import { FinancesComponent } from './menu/finances/finances.component';
 import { FinancesService } from './services/finances.service';
-import { DatesHelper } from './helpers/dates.helper';
+import { EffectifsComponent } from './menu/effectifs/effectifs.component';
+import { EffectifsService } from './services/effectifs.service';
+import { EffectifsTypeColorPipe } from './pipes/effectifs-type.pipe';
 
 export function loadProvider(provider: AppProvider): Function 
 {
@@ -57,6 +59,7 @@ export function loadProvider(provider: AppProvider): Function
     LoginComponent,
     Page404Component,
     WorkingTypeColorPipe,
+    EffectifsTypeColorPipe,
     AuthorizedHtmlViewDirective,
     DashboardComponent,
     MissionsReportsComponent,
@@ -65,7 +68,8 @@ export function loadProvider(provider: AppProvider): Function
     MissionsReportsComponent,
     AnnuaireComponent,
     WeedComponent,
-    FinancesComponent
+    FinancesComponent,
+    EffectifsComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,6 @@ export function loadProvider(provider: AppProvider): Function
     AppProvider,
     { provide: APP_INITIALIZER, useFactory:loadProvider, deps: [AppProvider], multi: true },
     Globals,
-    DatesHelper,
     AuthGuard,
     AngularFirestore,
     UserService,
@@ -90,7 +93,8 @@ export function loadProvider(provider: AppProvider): Function
     MissionsReportsService,
     AnnuaireService,
     WeedService,
-    FinancesService
+    FinancesService,
+    EffectifsService
   ],
   bootstrap: [AppComponent]
 })

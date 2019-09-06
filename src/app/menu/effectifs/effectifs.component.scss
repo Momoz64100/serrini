@@ -1,0 +1,78 @@
+.effectifs {
+    display: inline-flex;    
+    width: 100%;
+
+    .bloc-left {
+        width: 5%;
+        display: block;
+        margin-top: 40px;
+
+        .username {
+            margin-top:14.2px;
+        }
+    }
+
+    .bloc-right {
+        width: 93%;
+
+        .days-bloc {
+            display: inline-flex;
+
+            .day {    
+                .main-bloc {
+                    width: 180px;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+        
+                .sub-bloc {
+                    display: inline-flex;
+        
+                    .sub {
+                        width: 60px;                
+                    }
+                }
+    
+                .date-label {
+                    border: 1px solid black;
+                    text-align: center;
+                }
+            }
+        }     
+
+        .line {
+            display: block;
+    
+            .content {
+                display: inline-flex;
+    
+                form {
+    
+                    button {
+                        border: none;
+                        width: 60px;
+                        height: 30px;
+                        border: 1px solid black;
+                        cursor: pointer;
+                    }
+            
+                    .bg-green {
+                        background-color: green;
+                    }
+            
+                    .bg-orange {
+                        background-color: orange;
+                    }
+            
+                    .bg-red {
+                        background-color: red;
+                    }
+                    
+                    .bg-grey {
+                        background-color: lightgray;
+                    }
+                }
+            }
+        }
+    }
+}

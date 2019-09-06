@@ -11,6 +11,7 @@ import { ObjectifsComponent } from './menu/objectifs/objectifs.component';
 import { AnnuaireComponent } from './menu/annuaire/annuaire.component';
 import { WeedComponent } from './menu/weed/weed.component';
 import { FinancesComponent } from './menu/finances/finances.component';
+import { EffectifsComponent } from './menu/effectifs/effectifs.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', component: DashboardComponent },
+      { path: 'effectifs', component: EffectifsComponent },
       { path: 'rapports-missions', component: MissionsReportsComponent },
       { path: 'finances', component: FinancesComponent },
       { path: 'registre', component: AnnuaireComponent },

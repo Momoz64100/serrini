@@ -169,7 +169,7 @@
                             </tbody>
                         </table>
                         <button class="btn btn-primary btn-sm mt-2" style="float: right" data-toggle="modal"
-                            data-target="#modal-edit-tel">Éditer mon numéro</button>
+                            data-target="#modal-edit-tel">Modifier mes informations</button>
                     </div>
                 </div>
             </div>
@@ -184,13 +184,17 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12 b-r">
-                        <h3 class="m-t-none m-b">Modifier mon numéro</h3>
+                        <h3 class="m-t-none m-b">Modifier mes informations</h3>
+                        <div class="form-group">
+                            <label>Surnom</label>
+                            <input value="{{ globals.currentUser.surnom }}" #surnom id="surnom" name="surnom" type="text" class="form-control" placeholder="">
+                        </div>
                         <div class="form-group">
                             <label>Phone</label>
-                            <input value="{{ globals.currentUser.tel }}" #tel id="tel" name="tel" type="text" type="text" class="form-control"
+                            <input value="{{ globals.currentUser.tel }}" #tel id="tel" name="tel" type="text" class="form-control"
                                 data-mask="9999-9999" placeholder="">
                         </div>
-                        <button data-dismiss="modal" class="btn btn-primary btn-sm" type="button" (click)="updateTel(tel.value)">Modifier mon muméro</button>
+                        <button data-dismiss="modal" class="btn btn-primary btn-sm" type="button" (click)="updateTel(tel.value, surnom.value)">Modifier mes informations</button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Globals } from './globals';
 import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,16 @@ export class AppComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    $(function () {
+      $('.sidebar-collapse a').click(function () {
+        $('li').removeClass('active');
+        $(this).closest('li').addClass('active');
+      });
+
+      $('.collapser a').click(function (event) {
+        $('.collapser').toggleClass('active');
+      });
+    });
   }
 
   logout() {

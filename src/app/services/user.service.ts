@@ -24,8 +24,8 @@ export class UserService {
     this.db.doc(this.basePath + user.id).update(user);
   }
 
-  updateTel(id: string, tel: string) {    
-    this.db.doc(this.basePath + id).update({ tel: tel });
+  updateTel(id: string, tel: string, surnom: string) {    
+    this.db.doc(this.basePath + id).update({ tel: tel, surnom: surnom });
   }
 
   updateAllUserNewReport() {

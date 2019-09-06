@@ -3,6 +3,8 @@ import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { MissionsReports } from '../entities/missions-reports';
+import { mergeDbId } from '../helpers/utils';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class MissionsReportsService {
@@ -11,7 +13,7 @@ export class MissionsReportsService {
   basePath: string = 'missions-reports/';
 
   getMissions() {
-    return this.db.collection(this.basePath).snapshotChanges();
+    return this.db.collection(this.basePath).snapshotChanges().pipe(map(mergeDbId));
   }
 
   createMission(mission: MissionsReports) {

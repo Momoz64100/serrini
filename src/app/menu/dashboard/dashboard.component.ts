@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
     this.messageService.deleteMessage(id);
   }
 
-  updateTel(tel: any) {
-    this.userService.updateTel(this.globals.currentUser.id, tel);
+  updateTel(tel: any, surnom: any) {
+    this.userService.updateTel(this.globals.currentUser.id, tel, surnom);
   }
 }

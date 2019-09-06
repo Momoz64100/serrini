@@ -2,8 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Weed, WeedStock } from 'src/app/entities/weed';
 import { WeedService } from 'src/app/services/weed.service';
 import { Globals } from 'src/app/globals';
-import { Timestamp } from 'rxjs';
-import { DatesHelper } from 'src/app/helpers/dates.helper';
+import { activeDatePicker } from 'src/app/helpers/utils';
+import { parseDate } from 'src/app/helpers/dates-utils';
 declare var $: any;
 
 @Component({
@@ -23,22 +23,12 @@ export class WeedComponent implements OnInit {
 
   constructor(
     public globals: Globals,
-    private weedService: WeedService,
-    private datesHelper: DatesHelper
+    private weedService: WeedService
   ) { }
 
   ngOnInit() {
-    $(function () {
-      $('#date-weed .input-group.date').datepicker({
-        todayBtn: "linked",
-        keyboardNavigation: true,
-        forceParse: false,
-        calendarWeeks: true,
-        autoclose: true,
-        format: 'dd/mm/yyyy',
-        locale: 'fr'
-      }).datepicker("setDate", new Date());
-    });
+    activeDatePicker('#date-weed .input-group.date');
+
     this.weedService.getWeed().subscribe(data => {
       this.weeds = data.map(x => {
         return {
@@ -80,7 +70,7 @@ export class WeedComponent implements OnInit {
   }
 
   createWeed() {
-    this.currentWeed.date = this.datesHelper.parse($('#date').val());
+    this.currentWeed.date = parseDate($('#date').val());
     this.weedService.createWeed(this.currentWeed);
     this.currentWeed = {};
   }
