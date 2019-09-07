@@ -77,7 +77,7 @@ export class FinancesComponent implements OnInit {
       else
         this.currentRevenusGlobal = {};
 
-      this.argentDisponible = (this.revenusAcquis + this.revenusAcquisGlobal) - this.globalInvestedValues;
+      // this.argentDisponible = (this.revenusAcquis + this.revenusAcquisGlobal) - this.globalInvestedValues;
     });
   }
 

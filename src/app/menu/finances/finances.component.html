@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <!-- <div class="col-lg-4">
     <div class="widget style1">
       <div class="row">
         <div class="col-4 text-center">
@@ -24,8 +24,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-4">
+  </div> -->
+  <div class="col-lg-4 offset-4">
     <div class="widget style1">
       <div class="row">
         <div class="col-4 text-center">
@@ -75,6 +75,9 @@
           </div>
           <div class="value">
             Coût : {{ objectif.value | number: '2.' }} $
+          </div>
+          <div class="value" *ngIf="objectif.isPrincipal">
+            Déjà payé : {{ objectif.investedValue | number: '2.' }} $
           </div>
           <div class="percentage">
             {{ objectif.isPrincipal ? getPercentage(objectif.value, objectif.investedValue) :  objectif.isCompleted ? 100 : 0 }}%
