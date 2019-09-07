@@ -3,6 +3,8 @@ import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { FinanceObjectif, FinanceRevenus } from '../entities/finances';
+import { mergeDbId } from '../helpers/utils';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class FinancesService {
@@ -14,32 +16,32 @@ export class FinancesService {
     basePathContributors: string = 'finances-contributors/';
 
     getObjectifs() {
-        return this.db.collection(this.basePath).snapshotChanges();
+        return this.db.collection(this.basePath).snapshotChanges().pipe(map(mergeDbId));
     }
 
     createObjectif(objectif: FinanceObjectif) {
         objectif.isPrincipal = false;
         objectif.isCompleted = false;
+        objectif.investedValue = 0;
         objectif.creationDate = new Date().toLocaleDateString();
         return this.db.collection(this.basePath).add(objectif);
     }
 
-    updateObjectif(id: string) {
-        firebase.firestore().collection(this.basePath).get().then(x => {
-            x.forEach(data => {
-                this.db.doc(this.basePath + data.id).update({ isPrincipal: false });
-            })
-            this.db.doc(this.basePath + id).update({ isPrincipal: true, updateDate: new Date().toLocaleDateString() });
-        });
+    updateObjectif(id: string, isPrincipal: boolean) {
+        return this.db.doc(this.basePath + id).update({ isPrincipal: isPrincipal, investedValue: 0, updateDate: new Date().toLocaleDateString() });
     }
 
     updateObjectifOk(id: string) {
-        this.db.doc(this.basePath + id).update({ isCompleted: true, isPrincipal: false, updateDate: new Date().toLocaleDateString() });
+        return this.db.doc(this.basePath + id).update({ isCompleted: true, isPrincipal: false, investedValue: 0, updateDate: new Date().toLocaleDateString() });
+    }
+
+    updateInvestedValue(id: string, value: number) {
+        return this.db.doc(this.basePath + id).update({ investedValue: value });
     }
 
     // Revenus
     getRevenus() {
-        return this.db.collection(this.basePathRevenus).snapshotChanges();
+        return this.db.collection(this.basePathRevenus).snapshotChanges().pipe(map(mergeDbId));
     }
 
     getRevenusByUser(userId: string) {
@@ -58,7 +60,7 @@ export class FinancesService {
 
     // Revenus global
     getRevenusGlobal() {
-        return this.db.collection(this.basePathRevenusGlobal).snapshotChanges();
+        return this.db.collection(this.basePathRevenusGlobal).snapshotChanges().pipe(map(mergeDbId));
     }
 
     getRevenusGlobalByUser(userId: string) {

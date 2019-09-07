@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FinanceObjectif, FinanceContributor, FinanceRevenus } from 'src/app/entities/finances';
 import { Globals } from 'src/app/globals';
 import { FinancesService } from 'src/app/services/finances.service';
+import { orderByArrayAsc, orderByArrayDesc } from 'src/app/helpers/array-utils';
+import { concatUserName } from 'src/app/helpers/utils';
+declare var $: any;
 
 @Component({
   selector: 'app-finances',
@@ -21,7 +24,8 @@ export class FinancesComponent implements OnInit {
   revenusAcquis: number;
   revenusAcquisGlobal: number;
   revenusTotal: number;
-  revenusGlobalTotal: number;
+  argentDisponible: number;
+  globalInvestedValues: number = 0;
 
   constructor(
     public globals: Globals,
@@ -29,38 +33,28 @@ export class FinancesComponent implements OnInit {
 
   ngOnInit() {
     this.financesService.getObjectifs().subscribe(data => {
-      this.objectifs = data.map(x => {
-        return {
-          id: x.payload.doc.id,
-          ...x.payload.doc.data()
-        } as FinanceObjectif
-      }).sort((a, b) => a.isPrincipal > b.isPrincipal ? -1 : a.isPrincipal < b.isPrincipal ? 1 : 0)
-
       this.revenusTotal = 0;
-      this.objectifs.forEach(x => this.revenusTotal += !x.isCompleted ? x.value : 0);
+      this.argentDisponible = 0;
+      this.objectifs = data;
+      orderByArrayAsc(this.objectifs, "isCompleted");
+      orderByArrayDesc(this.objectifs, "isPrincipal");
+      this.objectifs.forEach(x => {
+        this.revenusTotal += !x.isCompleted ? x.value : 0;
+        this.globalInvestedValues += x.investedValue;
+      });
     });
 
     this.financesService.getRevenus().subscribe(data => {
-      this.revenus = data.map(x => {
-        return {
-          id: x.payload.doc.id,
-          ...x.payload.doc.data()
-        } as FinanceRevenus
-      }).sort((a, b) => a.value < b.value ? -1 : a.value > b.value ? 1 : 0)
-
       this.revenusAcquis = 0;
+      this.revenus = data;
+      orderByArrayDesc(this.revenus, "value");
       this.revenus.forEach(x => this.revenusAcquis += x.value);
     });
 
     this.financesService.getRevenusGlobal().subscribe(data => {
-      this.revenusGlobal = data.map(x => {
-        return {
-          id: x.payload.doc.id,
-          ...x.payload.doc.data()
-        } as FinanceRevenus
-      }).sort((a, b) => a.userName < b.userName ? -1 : a.userName > b.userName ? 1 : 0)
-
       this.revenusAcquisGlobal = 0;
+      this.revenusGlobal = data;
+      orderByArrayDesc(this.revenusGlobal, "value");
       this.revenusGlobal.forEach(x => this.revenusAcquisGlobal += x.value);
     });
 
@@ -70,9 +64,8 @@ export class FinancesComponent implements OnInit {
         this.currentRevenus.id = x[0].payload.doc.id;
         this.update = true;
       }
-      else {
+      else
         this.currentRevenus = {};
-      }
     });
 
     this.financesService.getRevenusGlobalByUser(this.globals.currentUser.id).subscribe(x => {
@@ -81,15 +74,16 @@ export class FinancesComponent implements OnInit {
         this.currentRevenusGlobal.id = x[0].payload.doc.id;
         this.update = true;
       }
-      else {
+      else
         this.currentRevenusGlobal = {};
-      }
+
+      this.argentDisponible = (this.revenusAcquis + this.revenusAcquisGlobal) - this.globalInvestedValues;
     });
   }
 
   createRevenus() {
     this.currentRevenus.userId = this.globals.currentUser.id;
-    this.currentRevenus.userName = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
+    this.currentRevenus.userName = concatUserName(this.globals.currentUser.prenom, this.globals.currentUser.nom);
     if (!this.update && this.currentRevenus.value !== 0)
       this.financesService.createRevenus(this.currentRevenus);
     else
@@ -110,19 +104,30 @@ export class FinancesComponent implements OnInit {
   }
 
   createObjectif() {
-    this.financesService.createObjectif(this.currentObjectif);
+    this.financesService.createObjectif(this.currentObjectif)
     this.currentObjectif = {};
   }
 
-  updateObjectif(id: string) {
-    this.financesService.updateObjectif(id);
+  updateObjectif(id: string, isPrincipal: boolean) {
+    this.financesService.updateObjectif(id, !isPrincipal);
   }
 
   updateObjectifOk(id: string) {
     this.financesService.updateObjectifOk(id);
-  }  
+  }
 
-  getPercentage(value: number) {
-    return Math.floor((this.revenusAcquis + this.revenusAcquisGlobal) / value  * 100);
+  updateInvestedValue(id: string, value: number) {
+    this.financesService.updateInvestedValue(id, value);
+    $(".modal-backdrop").remove();
+  }
+
+  getPercentage(price: number, investedValue: number) {
+    return Math.floor(investedValue / price * 100);
+  }
+
+  private calcultateRevenus() {
+
+
+
   }
 }

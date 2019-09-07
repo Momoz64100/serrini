@@ -2,6 +2,7 @@ export class FinanceObjectif {
     id?: string;
     name?: string;
     value?: number;
+    investedValue?: number;
     isPrincipal?: boolean;
     isCompleted?: boolean;
     creationDate?: string;
