@@ -17,7 +17,9 @@ export class LoginComponent {
 
 	connect() {
 		this.authService.loginByLogin(this.login, this.password).subscribe(x => {
-			this.router.navigate(['login']);
+			localStorage.removeItem('loggedIn');
+			localStorage.removeItem('userId');
+			localStorage.removeItem('isAdmin');
 			if (x === true) {
 				let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '';
 				this.router.navigate([redirect]);
