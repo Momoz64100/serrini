@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit {
     switch (type) {
       case 'addUser':
         this.userService.createUser(this.currentUser);
-        this.effectifsService.createEmptyEffectif(this.globals.currentUser.id, this.currentUser.prenom);
+        this.effectifsService.createEmptyEffectif("TODO", this.currentUser.prenom);
         this.currentUser = {};
         break;
       case 'editRadio':
