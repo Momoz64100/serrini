@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { Globals } from '../globals';
-import { Users } from '../entities/users';
-import { UserService } from '../services/user.service';
 
 @Component({
 	selector: 'app-login',
@@ -20,6 +17,10 @@ export class LoginComponent {
 
 	connect() {
 		this.authService.loginByLogin(this.login, this.password).subscribe(x => {
+			localStorage.removeItem('loggedIn');
+			localStorage.removeItem('userId');
+			localStorage.removeItem('isAdmin');
+			this.router.navigate(['login']);
 			if (x === true) {
 				let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '';
 				this.router.navigate([redirect]);
