@@ -1,52 +1,69 @@
 <!-- Radio -->
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="widget style1 navy-bg">
             <div class="row">
                 <div class="col-4">
-                    <i class="fa fa-volume-control-phone fa-5x"></i>
+                    <i class="fa fa-volume-up fa-5x"></i>
                 </div>
                 <div class="col-8 text-right">
                     <span>
-                        <strong>Radio du jour</strong>
+                        <strong>Radio civil</strong>
                     </span>
                     <h2 class="font-bold">{{ currentRadios.radioJour }}</h2>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="widget style1 yellow-bg">
             <div class="row">
                 <div class="col-4">
-                    <i class="fa fa-volume-control-phone fa-5x"></i>
+                    <i class="fa fa-volume-up fa-5x"></i>
                 </div>
                 <div class="col-8 text-right">
                     <span>
-                        <strong>Radio de secours</strong>
+                        <strong>Radio G8</strong>
                     </span>
                     <h2 class="font-bold">{{ currentRadios.radioSecours }}</h2>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="widget style1 lazur-bg">
+    <div class="col-lg-3">
+        <div class="widget style1 red-bg">
             <div class="row">
                 <div class="col-4">
-                    <i class="fa fa-volume-control-phone fa-5x"></i>
+                    <i class="fa fa-volume-up fa-5x"></i>
                 </div>
                 <div class="col-8 text-right">
                     <span>
-                        <strong>Radio de secours 2</strong>
+                        <strong>Radio de secours</strong>
                     </span>
                     <h2 class="font-bold">{{ currentRadios.radioGuetteurs }}</h2>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-lg-3">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="fa fa-mobile fa-5x"></i>
+                </div>
+                <div class="col-8 text-right">
+                    <span>
+                        <strong>Numéro de contact</strong>
+                    </span>
+                    <h2 class="font-bold">555-909101</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="mb-2"></div>
+
+<!-- Body -->
 <div class="row">
     <div class="col-lg-4">
         <div class="ibox ">
@@ -74,129 +91,157 @@
             </div>
         </div>
     </div>
-
     <div class="col-lg-8">
-        <div class="row">
-            <div class="col-lg-7">
-                <div class="ibox ">
-                    <div class="ibox-title">
-                        <h5>Actions en attente</h5>
-                    </div>
-                    <div class="ibox-content table-responsive">
-                        <table class="table table-hover no-margins">
-                            <thead>
-                                <tr>
-                                    <th>Status</th>
-                                    <th>Message</th>
-                                    <th>Par</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let workingDay of workingsDay">
-                                    <td><span
-                                            class="label {{ workingDay.status | workingTypeColor }}">{{ workingDay.status }}</span>
-                                    </td>
-                                    <td>{{ workingDay.message }}</td>
-                                    <td>{{ workingDay.user }}</td>
-                                    <td style="display: flex;" [appAuthorizedHtmlView]="'C_CHEF'"
-                                        [userRoles]="globals.currentUser.roles">
-                                        <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id"
-                                            class="mr-1"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a class="mr-1" (click)="deleteAction(workingDay.id)"><i
-                                                class="fa fa-trash-o text-red"></i></a>
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Informations de la famille</h5>
+            </div>
+            <div class="ibox-content table-responsive">
+                <table class="table table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>Pseudo</th>
+                            <th>Téléphone civil</th>
+                            <th>Téléphone illégal</th>
+                            <th>Numéro de compte</th>
+                            <th>Pseudo HRP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td><strong>{{ user.prenom }}</strong></td>
+                            <td>{{ user.nom }}</td>
+                            <td>{{ user.pseudo }}</td>
+                            <td>{{ user.tel }}</td>
+                            <td>{{ user.illegalTel }}</td>
+                            <td>{{ user.accountNumber }}</td>
+                            <td>{{ user.pseudoHRP }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary btn-sm mt-2" style="float: right" data-toggle="modal"
+                    data-target="#modal-edit-tel">Modifier mes informations</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Actions -->
+<div class="row">
+    <div class="col-lg-8 offset-4">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Actions en attente</h5>
+            </div>
+            <div class="ibox-content table-responsive">
+                <table class="table table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Message</th>
+                            <th>Par</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let workingDay of workingsDay">
+                            <td><span
+                                    class="label {{ workingDay.status | workingTypeColor }}">{{ workingDay.status }}</span>
+                            </td>
+                            <td>{{ workingDay.message }}</td>
+                            <td>{{ workingDay.user }}</td>
+                            <td style="display: flex;" [appAuthorizedHtmlView]="'C_CHEF'"
+                                [userRoles]="globals.currentUser.roles">
+                                <a data-toggle="modal" [attr.href]="'#modal-edit-status-' + workingDay.id"
+                                    class="mr-1"><i class="fa fa-pencil-square-o"></i></a>
+                                <a class="mr-1" (click)="deleteAction(workingDay.id)"><i
+                                        class="fa fa-trash-o text-red"></i></a>
 
-                                        <div id="modal-edit-status-{{workingDay.id}}" class="modal fade"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-sm-12 b-r">
-                                                                <h3 class="m-t-none m-b">Modifier l'action
-                                                                </h3>
-                                                                <div class="form-group"><label>Rapport</label>
-                                                                    <textarea value="{{workingDay.message}}"
-                                                                        #actionMessage class="form-control"
-                                                                        rows="4"></textarea>
-                                                                </div>
-                                                                <select value="{{workingDay.status}}" id="wstatus"
-                                                                    name="wstatus" #actionSelected
-                                                                    class="form-control m-b" name="account">
-                                                                    <option selected>A faire</option>
-                                                                    <option selected>En cours</option>
-                                                                    <option>Urgent</option>
-                                                                    <option>Fait</option>
-                                                                </select>
-                                                                <button data-dismiss="modal"
-                                                                    class="btn btn-primary btn-sm" type="button"
-                                                                    (click)="changeStatusAction(workingDay.id, actionSelected.value, actionMessage.value)">Modifier
-                                                                    le status</button>
-                                                            </div>
+                                <div id="modal-edit-status-{{workingDay.id}}" class="modal fade" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 b-r">
+                                                        <h3 class="m-t-none m-b">Modifier l'action
+                                                        </h3>
+                                                        <div class="form-group"><label>Rapport</label>
+                                                            <textarea value="{{workingDay.message}}" #actionMessage
+                                                                class="form-control" rows="4"></textarea>
                                                         </div>
+                                                        <select value="{{workingDay.status}}" id="wstatus"
+                                                            name="wstatus" #actionSelected class="form-control m-b"
+                                                            name="account">
+                                                            <option selected>A faire</option>
+                                                            <option selected>En cours</option>
+                                                            <option>Urgent</option>
+                                                            <option>Fait</option>
+                                                        </select>
+                                                        <button data-dismiss="modal" class="btn btn-primary btn-sm"
+                                                            type="button"
+                                                            (click)="changeStatusAction(workingDay.id, actionSelected.value, actionMessage.value)">Modifier
+                                                            le status</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="ibox ">
-                    <div class="ibox-title">
-                        <h5>Informations de la famille</h5>
-                    </div>
-                    <div class="ibox-content table-responsive">
-                        <table class="table table-hover no-margins">
-                            <thead>
-                                <tr>
-                                    <th>Prénom</th>
-                                    <th>Nom</th>
-                                    <th>Surnom</th>
-                                    <th>Téléphone</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let user of users">
-                                    <td><strong>{{ user.prenom }}</strong></td>
-                                    <td>{{ user.nom }}</td>
-                                    <td>{{ user.surnom }}</td>
-                                    <td>{{ user.tel }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button class="btn btn-primary btn-sm mt-2" style="float: right" data-toggle="modal"
-                            data-target="#modal-edit-tel">Modifier mes informations</button>
-                    </div>
-                </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Editer le numéro de téléphone -->
-<div id="modal-edit-tel" class="modal fade" aria-hidden="true">
+<!-- Modal informations -->
+<div class="modal inmodal fade" id="modal-edit-tel" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Mes informations</h4>
+            </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-12 b-r">
-                        <h3 class="m-t-none m-b">Modifier mes informations</h3>
-                        <div class="form-group">
-                            <label>Surnom</label>
-                            <input value="{{ globals.currentUser.surnom }}" #surnom id="surnom" name="surnom" type="text" class="form-control" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input value="{{ globals.currentUser.tel }}" #tel id="tel" name="tel" type="text" class="form-control"
-                                data-mask="555-999999" placeholder="">
-                        </div>
-                        <button data-dismiss="modal" class="btn btn-primary btn-sm" type="button" (click)="updateTel(tel.value, surnom.value)">Modifier mes informations</button>
+                    <div class="col-sm-12">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Pseudo en jeu</label>
+                                <input [(ngModel)]="globals.currentUser.pseudo" id="pseudo" name="pseudo" type="text"
+                                    class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Téléphone civil</label>
+                                <input [(ngModel)]="globals.currentUser.tel" id="legaltel" name="legaltel" type="text"
+                                    class="form-control" data-mask="555-999999">
+                            </div>
+                            <div class="form-group">
+                                <label>Téléphone illégal</label>
+                                <input [(ngModel)]="globals.currentUser.illegalTel" id="illegalTel" name="illegalTel"
+                                    type="text" class="form-control" data-mask="555-999999">
+                            </div>
+                            <div class="form-group">
+                                <label>Numéro de compte</label>
+                                <input [(ngModel)]="globals.currentUser.accountNumber" id="accountNumber"
+                                    name="accountNumber" type="text" class="form-control" data-mask="001-999999-99">
+                            </div>
+                            <div class="form-group">
+                                <label>Pseudo HRP</label>
+                                <input [(ngModel)]="globals.currentUser.pseudoHRP" id="pseudoHRP" name="pseudoHRP"
+                                    type="text" class="form-control">
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateUser()">Enregistrer
+                    mes revenus</button>
             </div>
         </div>
     </div>

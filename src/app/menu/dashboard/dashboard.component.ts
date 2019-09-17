@@ -8,6 +8,7 @@ import { MessageService } from 'src/app/services/message.service';
 import { WorkingDayService } from 'src/app/services/working-day.service ';
 import { WorkingDay } from 'src/app/entities/working-day';
 import { Globals } from 'src/app/globals';
+import { orderByArrayAsc } from 'src/app/helpers/array-utils';
 declare var $: any;
 
 @Component({
@@ -30,13 +31,9 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(data => {
-      this.users = data.map(x => {
-        return {
-          id: x.payload.doc.id,
-          ...x.payload.doc.data()
-        } as Users
-      }).sort((a, b) => a.prenom < b.prenom ? -1 : a.prenom > b.prenom ? 1 : 0)
+    this.userService.getUsers2().subscribe(data => {
+      this.users = data;
+      orderByArrayAsc(this.users, "prenom");      
     });
 
     this.messageService.getMessages().subscribe(data => {
@@ -82,7 +79,10 @@ export class DashboardComponent implements OnInit {
     this.messageService.deleteMessage(id);
   }
 
-  updateTel(tel: any, surnom: any) {
-    this.userService.updateTel(this.globals.currentUser.id, tel, surnom);
+  updateUser() {
+    this.globals.currentUser.tel = $('#legaltel').val();
+    this.globals.currentUser.illegalTel = $('#illegalTel').val();
+    this.globals.currentUser.accountNumber = $('#accountNumber').val();
+    this.userService.updateUser(this.globals.currentUser);
   }
 }

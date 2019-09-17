@@ -3,6 +3,8 @@ import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Users } from '../entities/users';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { mergeDbId } from '../helpers/utils';
 
 @Injectable()
 export class UserService {
@@ -13,15 +15,22 @@ export class UserService {
   getUsers() {
     return this.db.collection(this.basePath).snapshotChanges();
   }
+
+  getUsers2() {
+    return this.db.collection(this.basePath).snapshotChanges().pipe(map(mergeDbId));
+  }
   
   async createUser(user: Users) {
     user.creationDate = new Date().toLocaleDateString();
     user.login = user.login.toLowerCase();
+    user.roles = "CLAN";
     const x = await this.db.collection(this.basePath).add(user);
     return x.id;
   }
 
   updateUser(user: Users) {
+    console.log(user);
+    
     this.db.doc(this.basePath + user.id).update(user);
   }
 

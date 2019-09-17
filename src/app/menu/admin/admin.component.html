@@ -6,21 +6,21 @@
     <div class="ibox-content">
       <form (ngSubmit)="onSubmit('editRadio')" #editRadio="ngForm">
         <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Radio du jour</label>
+          <label class="col-sm-4 col-form-label">Radio civil</label>
           <div class="col-sm-8">
             <input [(ngModel)]="currentRadios.radioJour" id="radioJour" name="radioJour" type="text"
               class="form-control" required>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Radio de secours</label>
+          <label class="col-sm-4 col-form-label">Radio G8</label>
           <div class="col-sm-8">
             <input [(ngModel)]="currentRadios.radioSecours" id="radioSecours" name="radioSecours" type="text"
               class="form-control" required>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Radio de secours 2</label>
+          <label class="col-sm-4 col-form-label">Radio de secours</label>
           <div class="col-sm-8">
             <input [(ngModel)]="currentRadios.radioGuetteurs" id="radioGuetteurs" name="radioGuetteurs" type="text"
               class="form-control" required>
@@ -127,21 +127,9 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Surnom</label>
+          <label class="col-sm-2 col-form-label">Pseudo HRP</label>
           <div class="col-sm-10">
-            <input [(ngModel)]="currentUser.surnom" id="surnom" name="surnom" type="text" class="form-control" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Téléphone</label>
-          <div class="col-sm-10">
-            <input [(ngModel)]="currentUser.tel" id="tel" name="tel" type="text" class="form-control" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Rôles</label>
-          <div class="col-sm-10">
-            <input [(ngModel)]="currentUser.roles" id="roles" name="roles" type="text" class="form-control" required>
+            <input [(ngModel)]="currentUser.pseudoHRP" id="surnom" name="pseudoHRP" type="text" class="form-control" required>
           </div>
         </div>
         <div class="hr-line-dashed"></div>

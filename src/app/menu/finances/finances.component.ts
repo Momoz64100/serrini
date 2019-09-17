@@ -76,8 +76,6 @@ export class FinancesComponent implements OnInit {
       }
       else
         this.currentRevenusGlobal = {};
-
-      // this.argentDisponible = (this.revenusAcquis + this.revenusAcquisGlobal) - this.globalInvestedValues;
     });
   }
 
@@ -123,11 +121,5 @@ export class FinancesComponent implements OnInit {
 
   getPercentage(price: number, investedValue: number) {
     return Math.floor(investedValue / price * 100);
-  }
-
-  private calcultateRevenus() {
-
-
-
   }
 }

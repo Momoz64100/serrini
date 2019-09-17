@@ -4,8 +4,11 @@ export class Users {
     password?: string;
     prenom?: string;
     nom?: string;
-    surnom?: string;
+    pseudo?: string;
+    pseudoHRP?: string;
     tel?: string;
+    illegalTel?: string;
+    accountNumber?: string;
     roles?: string;
     newReport?: boolean;
     creationDate?: string;
