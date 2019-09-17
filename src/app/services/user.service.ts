@@ -14,10 +14,11 @@ export class UserService {
     return this.db.collection(this.basePath).snapshotChanges();
   }
   
-  createUser(user: Users) {
+  async createUser(user: Users) {
     user.creationDate = new Date().toLocaleDateString();
     user.login = user.login.toLowerCase();
-    return this.db.collection(this.basePath).add(user);
+    const x = await this.db.collection(this.basePath).add(user);
+    return x.id;
   }
 
   updateUser(user: Users) {

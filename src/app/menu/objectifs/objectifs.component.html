@@ -8,7 +8,7 @@
                 <h2>Objectifs à court terme</h2>
                 <ul class="todo-list m-t small-list ui-sortable">
                     <li *ngFor="let objectif of objectifsCourtTerme">
-                        <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
+                        <a [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
                                 class="fa fa-check-square"></i></a>
                         <span class="m-l-xs"
                             [className]="objectif.clicked ? 'todo-completed' : ''">{{ objectif.text }}</span>
@@ -26,7 +26,7 @@
                 <h2>Objectifs à moyen terme</h2>
                 <ul class="todo-list m-t small-list ui-sortable">
                     <li *ngFor="let objectif of objectifsMoyenTerme">
-                        <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
+                        <a [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
                                 class="fa fa-check-square"></i></a>
                         <span class="m-l-xs"
                             [className]="objectif.clicked ? 'todo-completed' : ''">{{ objectif.text }}</span>
@@ -44,7 +44,7 @@
                 <h2>Objectifs à long terme</h2>
                 <ul class="todo-list m-t small-list ui-sortable">
                     <li *ngFor="let objectif of objectifsLongTerme">
-                        <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
+                        <a [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles" class="check-link" (click)="changeCheckedStatus(objectif.id, objectif.clicked)"><i
                                 class="fa fa-check-square"></i></a>
                         <span class="m-l-xs"
                             [className]="objectif.clicked ? 'todo-completed' : ''">{{ objectif.text }}</span>

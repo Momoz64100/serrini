@@ -30,6 +30,7 @@ export class AdminComponent implements OnInit {
   currentRadios: Radio = {};
   currentMessage: MessageGrades = {};
   currentWorking: WorkingDay = {};
+  currentUserId: string;
 
   ngOnInit() {
     this.radioService.getRadios().subscribe(data => {
@@ -41,9 +42,10 @@ export class AdminComponent implements OnInit {
   onSubmit(type: string) {
     switch (type) {
       case 'addUser':
-        this.userService.createUser(this.currentUser);
-        this.effectifsService.createEmptyEffectif("TODO", this.currentUser.prenom);
-        this.currentUser = {};
+        this.userService.createUser(this.currentUser).then(x => {
+          this.effectifsService.createEmptyEffectif(x, this.currentUser.prenom);
+          this.currentUser = {};
+        });
         break;
       case 'editRadio':
         this.radioService.updateRadio(this.currentRadios);

@@ -45,7 +45,7 @@
       <div class="ibox-title">
         <h5>Objectifs financiers de la famille</h5>
         <div class="ibox-tools">
-          <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" class="btn btn-primary btn-sm"
+          <a [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles" class="btn btn-primary btn-sm"
             data-toggle="modal" data-target="#new-objectif" style="margin-top: -5px;">Nouvel objectif</a>
         </div>
       </div>
@@ -56,16 +56,16 @@
             <i *ngIf="objectif.isCompleted" class="fa fa-check-circle fa-2x text-navy" aria-hidden="true"></i>
           </div>
           <div class="top-bloc">
-            <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles"
+            <a [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles"
               *ngIf="!objectif.isCompleted && objectif.isPrincipal" class="mr-1" data-toggle="modal"
               [attr.href]="'#edit-invested-value-' + objectif.id" style="color: gray">
               <i class="fa fa-usd fa-lg" aria-hidden="true"></i>
             </a>
-            <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" *ngIf="!objectif.isCompleted"
+            <a [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles" *ngIf="!objectif.isCompleted"
               class="mr-1" (click)="updateObjectifOk(objectif.id)">
               <i class="fa fa-check fa-lg text-navy" aria-hidden="true"></i>
             </a>
-            <a [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles" *ngIf="!objectif.isCompleted"
+            <a [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles" *ngIf="!objectif.isCompleted"
               class="mr-1" (click)="updateObjectif(objectif.id, objectif.isPrincipal)">
               <i class="fa fa-star fa-lg yellow-icon" aria-hidden="true"></i>
             </a>
@@ -150,7 +150,7 @@
             </tr>
           </tbody>
         </table>
-        <button [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles"
+        <button [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles"
           class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#edit-revenus">Éditer mes
           revenus</button>
       </div>

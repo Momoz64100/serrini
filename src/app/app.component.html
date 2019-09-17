@@ -17,8 +17,8 @@
                 <li class="active">
                     <a routerLink="/"><i class="fa fa-th-large"></i> <span class="nav-label">Tableau de bord</span></a>
                 </li>
-                <li class="collapser" [appAuthorizedHtmlView]="'SERRINI'" [userRoles]="globals.currentUser.roles">
-                    <i class="fa fa-th-large i-submenu"></i> <span class="nav-label nav-grey-text">Clan Serrini</span>
+                <li class="collapser" [appAuthorizedHtmlView]="'CLAN'" [userRoles]="globals.currentUser.roles">
+                    <i class="fa fa-th-large i-submenu"></i> <span class="nav-label nav-grey-text">Le clan</span>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true">
                         <li>
                             <a routerLink="/rapports-missions">Rapports de mission
@@ -43,7 +43,7 @@
                         <li><a routerLink="/effectifs">Disponibilité</a></li>
                     </ul>
                 </li>
-                <li [appAuthorizedHtmlView]="'S_CHEF'" [userRoles]="globals.currentUser.roles">
+                <li [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles">
                     <a routerLink="/admin"><i class="fa fa-th-large"></i> <span
                             class="nav-label">Administration</span></a>
                 </li>

@@ -74,7 +74,7 @@
   <div class="col-lg-4">
     <div class="ibox">
       <div class="ibox-title">
-        <h5>Stock de graines</h5>
+        <h5>Stock</h5>
         <div class="ibox-tools">
         </div>
       </div>
@@ -93,8 +93,7 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#edit-stock">Éditer mes
-          graines</button>
+        <button class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#edit-stock">Éditer mon stock</button>
       </div>
     </div>
   </div>
@@ -148,14 +147,14 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
             class="sr-only">Close</span></button>
-        <h4 class="modal-title">Mes graines</h4>
+        <h4 class="modal-title">Mon stock</h4>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12">
             <form role="form">
               <div class="form-group">
-                <label>Graines en ma possession</label>
+                <label>Stocks en ma possession</label>
                 <br>
                 <small>Merci de ne rien inscrire si vous n'avez AUCUN stock</small>
                 <input [(ngModel)]="currentWeedStock.quantity" id="stockquantity" name="stockquantity" type="text"
