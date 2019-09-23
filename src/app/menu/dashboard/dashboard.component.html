@@ -61,9 +61,37 @@
         </div>
     </div>
 </div>
-<!-- Actions -->
-<div class="row">
-    <div class="col-lg-12">
+
+<div class="dashboard-content">
+    <div class="left-panel">
+        <!-- Messages gradés -->
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Messages</h5>
+            </div>
+            <div class="ibox-content ibox-heading">
+                <h3><i class="fa fa-envelope-o"></i> Messages des gradés</h3>
+                <small>Seuls les messages du chef et des officiers apparaitront ci-dessous</small>
+            </div>
+            <div class="ibox-content">
+                <div class="feed-activity-list">
+                    <div class="feed-element" *ngFor="let message of messages">
+                        <div>
+                            <small class="float-right text-navy">{{ message.minutesAgo }}</small>
+                            <strong>{{ message.user }}</strong>
+                            <div>{{ message.message }}</div>
+                            <small class="text-muted">{{ message.date }}</small>
+                            <button [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles"
+                                (click)="deleteMessage(message.id)" type="button" style="float: right;"
+                                class="btn btn-default btn-circle"><i class="fa fa-trash-o text-red"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-panel">
+        <!-- Actions en attente -->
         <div class="ibox ">
             <div class="ibox-title">
                 <h5>Actions en attente</h5>
@@ -79,7 +107,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let workingDay of workingsDay">
-                            <td><span
+                            <td>
+                                <span
                                     class="label {{ workingDay.status | workingTypeColor }}">{{ workingDay.status }}</span>
                             </td>
                             <td>{{ workingDay.message }}</td>
@@ -127,37 +156,8 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
-<!-- Body -->
-<div class="row">
-    <div class="col-lg-4">
-        <div class="ibox ">
-            <div class="ibox-title">
-                <h5>Messages</h5>
-            </div>
-            <div class="ibox-content ibox-heading">
-                <h3><i class="fa fa-envelope-o"></i> Messages des gradés</h3>
-                <small>Seuls les messages du chef et des officiers apparaitront ci-dessous</small>
-            </div>
-            <div class="ibox-content">
-                <div class="feed-activity-list">
-                    <div class="feed-element" *ngFor="let message of messages">
-                        <div>
-                            <small class="float-right text-navy">{{ message.minutesAgo }}</small>
-                            <strong>{{ message.user }}</strong>
-                            <div>{{ message.message }}</div>
-                            <small class="text-muted">{{ message.date }}</small>
-                            <button [appAuthorizedHtmlView]="'C_CHEF'" [userRoles]="globals.currentUser.roles"
-                                (click)="deleteMessage(message.id)" type="button" style="float: right;"
-                                class="btn btn-default btn-circle"><i class="fa fa-trash-o text-red"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-8">
+
+        <!-- Informations famille -->
         <div class="ibox ">
             <div class="ibox-title">
                 <h5>Informations de la famille</h5>
@@ -169,6 +169,7 @@
                             <th>Prénom</th>
                             <th>Nom</th>
                             <th>Pseudo</th>
+                            <th>Famille</th>
                             <th>Téléphone civil</th>
                             <th>Téléphone illégal</th>
                             <th>Numéro de compte</th>
@@ -180,6 +181,7 @@
                             <td><strong>{{ user.prenom }}</strong></td>
                             <td>{{ user.nom }}</td>
                             <td>{{ user.pseudo }}</td>
+                            <td>{{ user.famille }}</td>
                             <td>{{ user.tel }}</td>
                             <td>{{ user.illegalTel }}</td>
                             <td>{{ user.accountNumber }}</td>
@@ -193,7 +195,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Modal informations -->
 <div class="modal inmodal fade" id="modal-edit-tel" tabindex="-1" role="dialog" aria-hidden="true">

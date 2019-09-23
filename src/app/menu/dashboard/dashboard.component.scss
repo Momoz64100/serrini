@@ -1,0 +1,13 @@
+.dashboard-content {
+    width: 100%;
+    display: inline-flex;
+    
+    .left-panel {
+        width: 30%;
+        margin-right: 15px;
+    }
+
+    .right-panel {
+        width: 70%;
+    }
+}
