@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
   updateUser() {
     this.globals.currentUser.tel = $('#legaltel').val();
     this.globals.currentUser.illegalTel = $('#illegalTel').val();
-    this.globals.currentUser.accountNumber = $('#accountNumber').val();
+    // this.globals.currentUser.accountNumber = $('#accountNumber').val();
     this.userService.updateUser(this.globals.currentUser);
   }
 }
