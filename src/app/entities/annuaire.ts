@@ -5,5 +5,6 @@ export class Annuaire {
     group?: string;
     tel?: string;
     byUser?: string;
+    userId?: string;
     creationDate?: Date;
 }

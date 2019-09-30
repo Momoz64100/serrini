@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Annuaire } from '../entities/annuaire';
 import { Group } from '../entities/group';
+import { map } from 'rxjs/operators';
+import { mergeDbId } from '../helpers/utils';
 
 @Injectable()
 export class AnnuaireService {
@@ -13,7 +15,7 @@ export class AnnuaireService {
   basePathGRoup: string = 'groups/';
 
   getAnnuaires() {
-    return this.db.collection(this.basePath).snapshotChanges();
+    return this.db.collection(this.basePath).snapshotChanges().pipe(map(mergeDbId));;
   }
 
   createAnnuaire(annuaire: Annuaire) {
@@ -31,7 +33,7 @@ export class AnnuaireService {
 
   // GROUPES
   getGroups() {
-    return this.db.collection(this.basePathGRoup).snapshotChanges();
+    return this.db.collection(this.basePathGRoup).snapshotChanges().pipe(map(mergeDbId));;
   }
 
   createGroup(group: Group) {

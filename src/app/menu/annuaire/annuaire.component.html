@@ -29,6 +29,10 @@
               <td>{{ annuaire.group }}</td>
               <td>{{ annuaire.comment }}</td>
               <td>{{ annuaire.byUser }}</td>
+              <td>
+                <a *ngIf="annuaire.userId == globals.currentUser.id" (click)="deleteAnnuaire(annuaire.id)">
+                  <i class="fa fa-trash-o text-red"></i></a>
+              </td>
             </tr>
         </table>
       </div>

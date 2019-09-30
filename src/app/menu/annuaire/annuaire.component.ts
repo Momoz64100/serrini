@@ -3,6 +3,7 @@ import { Annuaire } from 'src/app/entities/annuaire';
 import { Globals } from 'src/app/globals';
 import { AnnuaireService } from 'src/app/services/annuaire.service';
 import { Group } from 'src/app/entities/group';
+import { orderByArrayAsc } from 'src/app/helpers/array-utils';
 declare var $: any;
 
 @Component({
@@ -28,26 +29,19 @@ export class AnnuaireComponent implements OnInit {
     });
 
     this.annuaireService.getAnnuaires().subscribe(data => {
-      this.annuaires = data.map(x => {
-        return {
-          id: x.payload.doc.id,
-          ...x.payload.doc.data()
-        } as Annuaire
-      }).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+      this.annuaires = data;
+      orderByArrayAsc(this.annuaires, "name");
     });
 
     this.annuaireService.getGroups().subscribe(data => {
-      this.groups = data.map(x => {
-        return {
-          id: x.payload.doc.id,
-          ...x.payload.doc.data()
-        } as Group
-      }).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+      this.groups = data;
+      orderByArrayAsc(this.groups, "name");
     });
   }
 
   createAnnuaire() {
     this.currentAnnuaire.byUser = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
+    this.currentAnnuaire.userId = this.globals.currentUser.id;
     this.currentAnnuaire.tel = $('#tel').val();
     this.annuaireService.createAnnuaire(this.currentAnnuaire);
     this.currentAnnuaire = {};
@@ -57,5 +51,9 @@ export class AnnuaireComponent implements OnInit {
   createGroup() {
     this.annuaireService.createGroup(this.currentGroup);
     this.currentGroup = {};
+  }
+
+  deleteAnnuaire(id: string) {
+    this.annuaireService.deleteAnnuaire(id);
   }
 }
