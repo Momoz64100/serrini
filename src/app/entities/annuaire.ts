@@ -6,5 +6,6 @@ export class Annuaire {
     tel?: string;
     byUser?: string;
     userId?: string;
+    fiability?: number;
     creationDate?: Date;
 }

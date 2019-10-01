@@ -20,6 +20,7 @@
               <th>Groupe</th>
               <th>Commentaire</th>
               <th>Inscrit par</th>
+              <th>Fiabilité</th>
             </tr>
           </thead>
           <tbody>
@@ -29,6 +30,13 @@
               <td>{{ annuaire.group }}</td>
               <td>{{ annuaire.comment }}</td>
               <td>{{ annuaire.byUser }}</td>
+              <div class="ml-2" id="{{annuaire.id}}">
+                <span class="glyphicon glyphicon-star mt-2"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+              </div>
               <td>
                 <a *ngIf="annuaire.userId == globals.currentUser.id" (click)="deleteAnnuaire(annuaire.id)">
                   <i class="fa fa-trash-o text-red"></i></a>
@@ -73,6 +81,16 @@
               <div class="form-group"><label>Commentaire</label>
                 <input [(ngModel)]="currentAnnuaire.comment" id="comment" name="comment" type="text" type="text"
                   class="form-control">
+              </div>
+              <div class="mb-2"></div>
+              <div class="form-group"><label>Fiabilité</label>
+                <tr class="fiability">
+                  <td><span (click)="setStarValue(1)" class="glyphicon glyphicon-star fa-2x"></span></td>
+                  <td><span (click)="setStarValue(2)" class="glyphicon glyphicon-star fa-2x"></span></td>
+                  <td><span (click)="setStarValue(3)" class="glyphicon glyphicon-star fa-2x"></span></td>
+                  <td><span (click)="setStarValue(4)" class="glyphicon glyphicon-star fa-2x"></span></td>
+                  <td><span (click)="setStarValue(5)" class="glyphicon glyphicon-star fa-2x"></span></td>
+                </tr>
               </div>
             </form>
           </div>
