@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Annuaire } from '../entities/annuaire';
 import { Group } from '../entities/group';
 import { map } from 'rxjs/operators';
-import { mergeDbId } from '../helpers/utils';
+import { mergeDbId, mergeDbIdSimpleValue } from '../helpers/utils';
 
 @Injectable()
 export class AnnuaireService {
@@ -18,13 +18,17 @@ export class AnnuaireService {
     return this.db.collection(this.basePath).snapshotChanges().pipe(map(mergeDbId));;
   }
 
+  getAnnuaireByid(id: string) {
+    return this.db.collection(this.basePath).doc(id).snapshotChanges();
+  }
+
   createAnnuaire(annuaire: Annuaire) {
     annuaire.creationDate = new Date();
     return this.db.collection(this.basePath).add(annuaire);
   }
 
-  updateAnnuaire(annuaireId: string, value: boolean) {
-    this.db.doc(this.basePath + annuaireId).update({ clicked: value });
+  updateAnnuaire(annuaire: Annuaire) {
+    this.db.doc(this.basePath + annuaire.id).update(annuaire);
   }
 
   deleteAnnuaire(annuaireId: string) {

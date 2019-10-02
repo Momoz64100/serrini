@@ -33,7 +33,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers2().subscribe(data => {
       this.users = data;
-      orderByArrayAsc(this.users, "prenom");      
+      orderByArrayAsc(this.users, "prenom"); 
+      $(document).ready(function () {
+        $('.footable').footable();
+      });     
     });
 
     this.messageService.getMessages().subscribe(data => {
@@ -82,7 +85,6 @@ export class DashboardComponent implements OnInit {
   updateUser() {
     this.globals.currentUser.tel = $('#legaltel').val();
     this.globals.currentUser.illegalTel = $('#illegalTel').val();
-    // this.globals.currentUser.accountNumber = $('#accountNumber').val();
     this.userService.updateUser(this.globals.currentUser);
   }
 }

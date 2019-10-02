@@ -1,21 +1,6 @@
 <!-- Radio -->
 <div class="row">
     <div class="col-lg-3">
-        <div class="widget style1 navy-bg">
-            <div class="row">
-                <div class="col-4">
-                    <i class="fa fa-volume-up fa-5x"></i>
-                </div>
-                <div class="col-8 text-right">
-                    <span>
-                        <strong>Radio civil</strong>
-                    </span>
-                    <h2 class="font-bold">{{ currentRadios.radioJour }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
         <div class="widget style1 yellow-bg">
             <div class="row">
                 <div class="col-4">
@@ -26,6 +11,21 @@
                         <strong>Radio G8</strong>
                     </span>
                     <h2 class="font-bold">{{ currentRadios.radioSecours }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget style1 navy-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="fa fa-volume-up fa-5x"></i>
+                </div>
+                <div class="col-8 text-right">
+                    <span>
+                        <strong>Radio civil</strong>
+                    </span>
+                    <h2 class="font-bold">{{ currentRadios.radioJour }}</h2>
                 </div>
             </div>
         </div>
@@ -162,8 +162,11 @@
             <div class="ibox-title">
                 <h5>Informations de la famille</h5>
             </div>
-            <div class="ibox-content table-responsive">
-                <table class="table table-hover no-margins">
+            <div class="ibox-content">
+                <input type="text" class="form-control form-control-sm m-b-xs" id="filter"
+                    placeholder="Chercher dans la confrérie">
+
+                <table class="footable table table-stripped" data-page-size="30" data-filter=#filter>
                     <thead>
                         <tr>
                             <th>Prénom</th>
@@ -188,9 +191,9 @@
                             <td>{{ user.pseudoHRP }}</td>
                         </tr>
                     </tbody>
+                    <button class="btn btn-primary btn-sm mt-2" data-toggle="modal"
+                        data-target="#modal-edit-tel">Modifier mes informations</button>
                 </table>
-                <button class="btn btn-primary btn-sm mt-2" style="float: right" data-toggle="modal"
-                    data-target="#modal-edit-tel">Modifier mes informations</button>
             </div>
         </div>
     </div>

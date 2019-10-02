@@ -9,6 +9,12 @@ export const mergeDbId = function <T>(actions: DocumentChangeAction<T>[]) {
     });
 };
 
+export const mergeDbIdSimpleValue = function <T>(action: DocumentChangeAction<T>) {
+    const data = action.payload.doc.data();
+    const id = action.payload.doc.id;
+    return { ...data, id } as T;
+};
+
 export const activeDatePicker = function (value: string) {
     $(function () {
         $(value).datepicker({
@@ -23,6 +29,6 @@ export const activeDatePicker = function (value: string) {
     });
 }
 
-export const concatUserName = function(prenom: string, nom: string) {
+export const concatUserName = function (prenom: string, nom: string) {
     return prenom + ' ' + nom;
 }

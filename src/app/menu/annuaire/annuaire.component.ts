@@ -4,7 +4,6 @@ import { Globals } from 'src/app/globals';
 import { AnnuaireService } from 'src/app/services/annuaire.service';
 import { Group } from 'src/app/entities/group';
 import { orderByArrayAsc } from 'src/app/helpers/array-utils';
-import { forkJoin } from 'rxjs';
 declare var $: any;
 
 @Component({
@@ -17,6 +16,7 @@ export class AnnuaireComponent implements OnInit {
   groups: Group[];
   currentAnnuaire: Annuaire = {};
   currentGroup: Group = {};
+  isUpdate = false;
 
   constructor(
     private globals: Globals,
@@ -27,7 +27,7 @@ export class AnnuaireComponent implements OnInit {
     $(document).ready(function () {
       $('.footable').footable();
     });
-    
+
     this.getAnnuaires();
     this.getGroups();
   }
@@ -48,17 +48,48 @@ export class AnnuaireComponent implements OnInit {
   }
 
   createAnnuaire() {
-    this.currentAnnuaire.byUser = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
-    this.currentAnnuaire.userId = this.globals.currentUser.id;
     this.currentAnnuaire.tel = $('#tel').val();
-    this.annuaireService.createAnnuaire(this.currentAnnuaire).finally(() => this.fillStars());
-    this.currentAnnuaire = {};
-    $('#tel').val("");
+
+    if (this.isUpdate) {
+      this.annuaireService.updateAnnuaire(this.currentAnnuaire);
+      this.fillStars();
+    }
+    else {
+      this.currentAnnuaire.byUser = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
+      this.currentAnnuaire.userId = this.globals.currentUser.id;
+      this.annuaireService.createAnnuaire(this.currentAnnuaire).finally(() => this.fillStars());
+    }
+
+    this.resetAnnuaire();
   }
 
   createGroup() {
     this.annuaireService.createGroup(this.currentGroup);
     this.currentGroup = {};
+  }
+
+  resetAnnuaire() {
+    this.currentAnnuaire = {};
+    this.currentAnnuaire.group = "";
+    $('.fiability span').removeClass('active');
+    $('#tel').val("");
+    this.isUpdate = false;
+  }
+
+  editAnnuaire(id: string) {
+    this.isUpdate = true;
+    $('.fiability span').removeClass('active');
+    this.annuaireService.getAnnuaireByid(id).subscribe(x => {
+      this.currentAnnuaire = x.payload.data();
+      this.currentAnnuaire.id = x.payload.id;
+      var fiability = this.currentAnnuaire.fiability;
+      $('#tel').val(this.currentAnnuaire.tel);
+      $('.fiability span').each(function (index: number) {
+        index++;
+        if (index <= fiability)
+          $(this).addClass("active");
+      });
+    })
   }
 
   deleteAnnuaire(id: string) {
@@ -78,7 +109,7 @@ export class AnnuaireComponent implements OnInit {
 
   fillStars() {
     this.annuaires.forEach(x => {
-      $('#' + x.id + ' span').each(function (index: number) {
+      $('#' + x.id + ' i').each(function (index: number) {
         index++;
         if (index <= x.fiability)
           $(this).addClass("active");
