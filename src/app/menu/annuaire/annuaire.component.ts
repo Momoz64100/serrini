@@ -36,6 +36,7 @@ export class AnnuaireComponent implements OnInit {
     this.annuaireService.getAnnuaires().subscribe(data => {
       this.annuaires = data;
       orderByArrayAsc(this.annuaires, "name");
+      this.fillStars();
     });
   }
 
@@ -51,8 +52,7 @@ export class AnnuaireComponent implements OnInit {
     this.currentAnnuaire.tel = $('#tel').val();
 
     if (this.isUpdate) {
-      this.annuaireService.updateAnnuaire(this.currentAnnuaire);
-      this.fillStars();
+      this.annuaireService.updateAnnuaire(this.currentAnnuaire).finally(() => this.fillStars());;
     }
     else {
       this.currentAnnuaire.byUser = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
@@ -93,7 +93,7 @@ export class AnnuaireComponent implements OnInit {
   }
 
   deleteAnnuaire(id: string) {
-    this.annuaireService.deleteAnnuaire(id);
+    this.annuaireService.deleteAnnuaire(id).finally(() => this.fillStars());
   }
 
   setStarValue(count: number) {

@@ -28,11 +28,11 @@ export class AnnuaireService {
   }
 
   updateAnnuaire(annuaire: Annuaire) {
-    this.db.doc(this.basePath + annuaire.id).update(annuaire);
+    return this.db.doc(this.basePath + annuaire.id).update(annuaire);
   }
 
   deleteAnnuaire(annuaireId: string) {
-    this.db.doc(this.basePath + annuaireId).delete();
+    return this.db.doc(this.basePath + annuaireId).delete();
   }
 
   // GROUPES
