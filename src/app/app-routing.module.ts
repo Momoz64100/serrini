@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'rapports-missions', component: MissionsReportsComponent },
       { path: 'finances', component: FinancesComponent },
       { path: 'registre', component: AnnuaireComponent },
-      { path: 'weed', component: WeedComponent },
+      { path: 'stocks', component: WeedComponent },
       { path: 'objectifs', component: ObjectifsComponent },
       { path: 'admin', component: AdminComponent },
       { path: '**', component: Page404Component }

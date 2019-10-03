@@ -3,6 +3,8 @@ import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Weed, WeedStock } from '../entities/weed';
+import { map } from 'rxjs/operators';
+import { mergeDbId } from '../helpers/utils';
 
 @Injectable()
 export class WeedService {
@@ -27,7 +29,7 @@ export class WeedService {
     // Stock weed
 
     getStockWeed() {
-        return this.db.collection(this.basePathStockWeed).snapshotChanges();
+        return this.db.collection(this.basePathStockWeed).snapshotChanges().pipe(map(mergeDbId));;
     }
 
     getStockWeedByUser(userId: string) {

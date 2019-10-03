@@ -3,7 +3,7 @@
     <div class="widget style1">
       <div class="row">
         <div class="col-4 text-center">
-          <i class="fa fa-trophy fa-5x"></i>
+          <i class="fa fa-usd fa-5x"></i>
         </div>
         <div class="col-8 text-right">
           <span> Revenu du mois </span>
@@ -12,28 +12,15 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-4 offset-4">
     <div class="widget style1">
       <div class="row">
         <div class="col-4 text-center">
-          <i class="fa fa-trophy fa-5x"></i>
+          <i class="fa fa-usd fa-5x"></i>
         </div>
         <div class="col-8 text-right">
-          <span> Revenus global du dealer </span>
+          <span> Revenus global des ventes </span>
           <h2 class="font-bold">{{ revenuGlobalDealder | number: '2.' }} $</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="widget style1">
-      <div class="row">
-        <div class="col-4 text-center">
-          <i class="fa fa-trophy fa-5x"></i>
-        </div>
-        <div class="col-8 text-right">
-          <span> Revenu potentiel avec les graines </span>
-          <h2 class="font-bold">{{ revenuPotentielGraine | number: '2.' }} $</h2>
         </div>
       </div>
     </div>
@@ -44,9 +31,9 @@
   <div class="col-lg-8">
     <div class="ibox ">
       <div class="ibox-title">
-        <h5>Ventes au dealer</h5>
+        <h5>Gestion des ventes</h5>
         <div class="ibox-tools">
-          <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-vente">Nouvelle vente</a>
+          <a class="btn btn-primary btn-sm" style="margin-top: -5px" data-toggle="modal" data-target="#new-vente">Nouvelle vente</a>
         </div>
       </div>
       <div class="ibox-content">
@@ -55,7 +42,9 @@
             <tr>
               <th>Date</th>
               <th>Vendeur</th>
+              <th>Acheteur</th>
               <th>Quantités</th>
+              <th>Type</th>
               <th>Revenus</th>
             </tr>
           </thead>
@@ -63,8 +52,10 @@
             <tr *ngFor="let weed of weeds">
               <td>{{ weed.date | date: 'dd/MM/yyyy' }}</td>
               <td>{{ weed.vendor }}</td>
+              <td>{{ weed.buyer }}</td>
               <td>{{ weed.quantity }}</td>
-              <td>{{ weed.quantity * 600  | number: '2.'}} €</td>
+              <td>{{ weed.type }}</td>
+              <td>{{ weed.price | number: '2.' }} $</td>
             </tr>
           </tbody>
         </table>
@@ -84,16 +75,19 @@
             <tr>
               <th>Possession</th>
               <th>Quantités</th>
+              <th>Type</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let weedStock of weedsStock">
               <td>{{ weedStock.userName }}</td>
               <td>{{ weedStock.quantity }}</td>
+              <td>{{ weedStock.type }}</td>
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#edit-stock">Éditer mon stock</button>
+        <button class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#edit-stock">Éditer mon
+          stock</button>
       </div>
     </div>
   </div>
@@ -120,12 +114,29 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Vendeur</label>
-                <input [(ngModel)]="currentWeed.vendor" id="vendor" name="vendor" type="text" class="form-control">
+                <label>Type</label>
+                <select [(ngModel)]="currentWeed.type" class="form-control m-b" name="weedtype">
+                  <option>Cocaïne</option>
+                  <option>Weed</option>
+                  <option>Crack</option>
+                  <option>Moonshine</option>
+                  <option>JAR</option>
+                </select>
               </div>
-              <div class="form-group"><label>Nombre de pochons</label>
+              <div class="form-group"><label>Acheteur</label>
+                <input [(ngModel)]="currentWeed.buyer" id="buyer" name="buyer" type="text" type="text"
+                  class="form-control">
+              </div>
+              <div class="form-group"><label>Quantité</label>
                 <input [(ngModel)]="currentWeed.quantity" id="quantity" name="quantity" type="text" type="number"
                   class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="font-normal">Prix de vente</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                  <input [(ngModel)]="currentWeed.price" id="price" name="price" type="number" class="form-control">
+                </div>
               </div>
             </form>
           </div>
@@ -159,6 +170,16 @@
                 <small>Merci de ne rien inscrire si vous n'avez AUCUN stock</small>
                 <input [(ngModel)]="currentWeedStock.quantity" id="stockquantity" name="stockquantity" type="text"
                   type="number" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Type</label>
+                <select [(ngModel)]="currentWeedStock.type" class="form-control m-b" name="weedstocktype">
+                  <option>Cocaïne</option>
+                  <option>Weed</option>
+                  <option>Crack</option>
+                  <option>Moonshine</option>
+                  <option>JAR</option>
+                </select>
               </div>
             </form>
           </div>

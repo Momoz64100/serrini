@@ -4,6 +4,7 @@ import { WeedService } from 'src/app/services/weed.service';
 import { Globals } from 'src/app/globals';
 import { activeDatePicker } from 'src/app/helpers/utils';
 import { parseDate } from 'src/app/helpers/dates-utils';
+import { orderByArrayAsc } from 'src/app/helpers/array-utils';
 declare var $: any;
 
 @Component({
@@ -18,7 +19,6 @@ export class WeedComponent implements OnInit {
   currentWeedStock: WeedStock = {};
   update: boolean = false;
   revenuGlobalDealder: number;
-  revenuPotentielGraine: number;
   revenuJour: number;
 
   constructor(
@@ -40,20 +40,13 @@ export class WeedComponent implements OnInit {
 
       this.revenuGlobalDealder = 0;
       this.revenuJour = 0;
-      this.weeds.forEach(x => this.revenuJour += new Date().getMonth() == x.date.getMonth() ? (x.quantity * 600) : 0);
-      this.weeds.forEach(x => this.revenuGlobalDealder += (x.quantity * 600));
+      this.weeds.forEach(x => this.revenuJour += new Date().getMonth() == x.date.getMonth() ? x.price : 0);
+      this.weeds.forEach(x => this.revenuGlobalDealder += x.price);
     });
 
     this.weedService.getStockWeed().subscribe(data => {
-      this.weedsStock = data.map(x => {
-        return {
-          id: x.payload.doc.id,
-          ...x.payload.doc.data()
-        } as WeedStock
-      }).sort((a, b) => a.userName < b.userName ? -1 : a.userName > b.userName ? 1 : 0)
-
-      this.revenuPotentielGraine = 0;
-      this.weedsStock.forEach(x => this.revenuPotentielGraine += (x.quantity * 10) * 600);
+      this.weedsStock = data;
+      orderByArrayAsc(this.weedsStock, "userName");
     });
 
     this.weedService.getStockWeedByUser(this.globals.currentUser.id).subscribe(x => {
@@ -71,6 +64,7 @@ export class WeedComponent implements OnInit {
 
   createWeed() {
     this.currentWeed.date = parseDate($('#date').val());
+    this.currentWeed.vendor = this.globals.currentUser.prenom;
     this.weedService.createWeed(this.currentWeed);
     this.currentWeed = {};
   }
