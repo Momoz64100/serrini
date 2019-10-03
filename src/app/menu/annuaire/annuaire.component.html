@@ -5,7 +5,8 @@
         <h5>Annuaire téléphonique privé de la confrérie</h5>
         <div class="ibox-tools">
           <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-group">Nouveau groupe</a>
-          <a class="btn btn-primary btn-sm" (click)="resetAnnuaire()" data-toggle="modal" data-target="#new-annuaire">Nouvelle entrée</a>
+          <a class="btn btn-primary btn-sm" (click)="resetAnnuaire()" data-toggle="modal"
+            data-target="#new-annuaire">Nouvelle entrée</a>
         </div>
       </div>
       <div class="ibox-content">
@@ -38,9 +39,11 @@
                 <i class="glyphicon glyphicon-star"></i>
               </td>
               <td>
-                <a *ngIf="annuaire.userId == globals.currentUser.id" (click)="editAnnuaire(annuaire.id)" data-toggle="modal" data-target="#new-annuaire">
+                <a *ngIf="annuaire.userId == globals.currentUser.id || globals.currentUser.id == 'NNq6L4SqZGyq4nCxJY8K'"
+                  (click)="editAnnuaire(annuaire.id)" data-toggle="modal" data-target="#new-annuaire">
                   <i class="fa fa-edit"></i></a>
-                <a *ngIf="annuaire.userId == globals.currentUser.id" class="ml-1" (click)="deleteAnnuaire(annuaire.id)">
+                <a *ngIf="annuaire.userId == globals.currentUser.id  || globals.currentUser.id == 'NNq6L4SqZGyq4nCxJY8K'"
+                  class="ml-1" (click)="deleteAnnuaire(annuaire.id)">
                   <i class="fa fa-trash-o text-red"></i></a>
               </td>
             </tr>

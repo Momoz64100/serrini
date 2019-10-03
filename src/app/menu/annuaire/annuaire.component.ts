@@ -4,6 +4,8 @@ import { Globals } from 'src/app/globals';
 import { AnnuaireService } from 'src/app/services/annuaire.service';
 import { Group } from 'src/app/entities/group';
 import { orderByArrayAsc } from 'src/app/helpers/array-utils';
+import Swal from 'sweetalert2';
+
 declare var $: any;
 
 @Component({
@@ -49,6 +51,7 @@ export class AnnuaireComponent implements OnInit {
   }
 
   createAnnuaire() {
+
     this.currentAnnuaire.tel = $('#tel').val();
 
     if (this.isUpdate) {
@@ -93,7 +96,26 @@ export class AnnuaireComponent implements OnInit {
   }
 
   deleteAnnuaire(id: string) {
-    this.annuaireService.deleteAnnuaire(id).finally(() => this.fillStars());
+    Swal.fire({
+      title: "Es-tu sûr de toi ?",
+      text: "Cette action est irréversible !",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Oui, suppprimer !",
+      cancelButtonText: "Annuler",
+      reverseButtons: true,
+      focusConfirm: false
+    }).then((result) => {
+      if (result.value) {
+        this.annuaireService.deleteAnnuaire(id).finally(() => this.fillStars());
+        Swal.fire({
+          title: "Supprimé !",
+          text: "Le numéro a été supprimé correctement",
+          type: 'success',
+        });
+      }
+    });
   }
 
   setStarValue(count: number) {
