@@ -42,7 +42,10 @@ export class WeedService {
 
     createStockWeed(weed: WeedStock) {
         weed.creationDate = new Date().toLocaleDateString();
-        weed.updateDate = new Date().toLocaleDateString();
         return this.db.collection(this.basePathStockWeed).add(weed);
+    }
+
+    deleteStock(id: string) {
+        return this.db.doc(this.basePathStockWeed + id).delete();
     }
 }

@@ -15,6 +15,5 @@ export class WeedStock {
     userName?: string;
     quantity?: number;
     type?: string;
-    updateDate?: string;
     creationDate?: string;
 }

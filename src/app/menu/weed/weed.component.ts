@@ -17,7 +17,6 @@ export class WeedComponent implements OnInit {
   weedsStock: WeedStock[];
   currentWeed: Weed = {};
   currentWeedStock: WeedStock = {};
-  update: boolean = false;
   revenuGlobalDealder: number;
   revenuJour: number;
 
@@ -48,18 +47,6 @@ export class WeedComponent implements OnInit {
       this.weedsStock = data;
       orderByArrayAsc(this.weedsStock, "userName");
     });
-
-    this.weedService.getStockWeedByUser(this.globals.currentUser.id).subscribe(x => {
-      if (x.length > 0) {
-        this.currentWeedStock = x[0].payload.doc.data();
-        this.currentWeedStock.id = x[0].payload.doc.id;
-        this.update = true;
-      }
-      else {
-        this.currentWeedStock = {};
-        this.update = false;
-      }
-    });
   }
 
   createWeed() {
@@ -69,13 +56,15 @@ export class WeedComponent implements OnInit {
     this.currentWeed = {};
   }
 
+  deleteStock(id: string) {
+    this.weedService.deleteStock(id);
+  }
+
   createWeedStock() {
     this.currentWeedStock.userId = this.globals.currentUser.id;
     this.currentWeedStock.userName = this.globals.currentUser.prenom + ' ' + this.globals.currentUser.nom;
-    if (!this.update && this.currentWeedStock.quantity !== 0)
+    if (this.currentWeedStock.quantity !== 0)
       this.weedService.createStockWeed(this.currentWeedStock);
-    else
-      this.weedService.updateStockWeed(this.currentWeedStock);
     this.currentWeedStock = {};
   }
 }
