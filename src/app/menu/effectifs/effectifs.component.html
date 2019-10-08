@@ -9,56 +9,49 @@
       <div class="day">
         <div class="main-bloc date-label">Lundi</div>
         <div class="sub-bloc">
-          <div class="sub date-label">Matin</div>
-          <div class="sub date-label">Midi</div>
+          <div class="sub date-label">Après-midi</div>
           <div class="sub date-label">Soir</div>
         </div>
       </div>
       <div class="day">
         <div class="main-bloc date-label">Mardi</div>
         <div class="sub-bloc">
-          <div class="sub date-label">Matin</div>
-          <div class="sub date-label">Midi</div>
+          <div class="sub date-label">Après-midi</div>
           <div class="sub date-label">Soir</div>
         </div>
       </div>
       <div class="day">
         <div class="main-bloc date-label">Mercredi</div>
         <div class="sub-bloc">
-          <div class="sub date-label">Matin</div>
-          <div class="sub date-label">Midi</div>
+          <div class="sub date-label">Après-midi</div>
           <div class="sub date-label">Soir</div>
         </div>
       </div>
       <div class="day">
         <div class="main-bloc date-label">Jeudi</div>
         <div class="sub-bloc">
-          <div class="sub date-label">Matin</div>
-          <div class="sub date-label">Midi</div>
+          <div class="sub date-label">Après-midi</div>
           <div class="sub date-label">Soir</div>
         </div>
       </div>
       <div class="day">
         <div class="main-bloc date-label">Vendredi</div>
         <div class="sub-bloc">
-          <div class="sub date-label">Matin</div>
-          <div class="sub date-label">Midi</div>
+          <div class="sub date-label">Après-midi</div>
           <div class="sub date-label">Soir</div>
         </div>
       </div>
       <div class="day">
         <div class="main-bloc date-label">Samedi</div>
         <div class="sub-bloc">
-          <div class="sub date-label">Matin</div>
-          <div class="sub date-label">Midi</div>
+          <div class="sub date-label">Après-midi</div>
           <div class="sub date-label">Soir</div>
         </div>
       </div>
       <div class="day">
         <div class="main-bloc date-label">Dimanche</div>
         <div class="sub-bloc">
-          <div class="sub date-label">Matin</div>
-          <div class="sub date-label">Midi</div>
+          <div class="sub date-label">Après-midi</div>
           <div class="sub date-label">Soir</div>
         </div>
       </div>
@@ -67,20 +60,13 @@
       <div class="content">
         <form role="form">
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
-            class="{{ effectif.lundi1 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'lundi1')"></button>
-          <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.lundi2 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'lundi2')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.lundi3 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'lundi3')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
-            class="{{ effectif.mardi1 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'mardi1')"></button>
-          <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.mardi2 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'mardi2')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.mardi3 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'mardi3')"></button>
-          <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
-            class="{{ effectif.mercredi1 | effectifsTypeColor }}"
-            (click)="changeStatut(effectif, 'mercredi1')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.mercredi2 | effectifsTypeColor }}"
             (click)="changeStatut(effectif, 'mercredi2')"></button>
@@ -88,14 +74,9 @@
             class="{{ effectif.mercredi3 | effectifsTypeColor }}"
             (click)="changeStatut(effectif, 'mercredi3')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
-            class="{{ effectif.jeudi1 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'jeudi1')"></button>
-          <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.jeudi2 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'jeudi2')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.jeudi3 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'jeudi3')"></button>
-          <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
-            class="{{ effectif.vendredi1 | effectifsTypeColor }}"
-            (click)="changeStatut(effectif, 'vendredi1')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.vendredi2 | effectifsTypeColor }}"
             (click)="changeStatut(effectif, 'vendredi2')"></button>
@@ -103,14 +84,9 @@
             class="{{ effectif.vendredi3 | effectifsTypeColor }}"
             (click)="changeStatut(effectif, 'vendredi3')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
-            class="{{ effectif.samedi1 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'samedi1')"></button>
-          <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.samedi2 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'samedi2')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.samedi3 | effectifsTypeColor }}" (click)="changeStatut(effectif, 'samedi3')"></button>
-          <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
-            class="{{ effectif.dimanche1 | effectifsTypeColor }}"
-            (click)="changeStatut(effectif, 'dimanche1')"></button>
           <button type="button" [disabled]="effectif.userId != globals.currentUser.id"
             class="{{ effectif.dimanche2 | effectifsTypeColor }}"
             (click)="changeStatut(effectif, 'dimanche2')"></button>

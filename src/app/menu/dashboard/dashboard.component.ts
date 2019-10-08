@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
     this.messageService.getMessages().subscribe(data => {
       this.messages = data.map(x => {
         var minutesAgo = Math.floor(((new Date().getTime() - new Date(x.payload.doc.get('timestamp').seconds * 1000).getTime()) / 1000 / 60) << 0);
+        var hoursAgo = Math.floor(minutesAgo / 60);        
         var dbDate = new Date(x.payload.doc.get('timestamp').seconds * 1000).toLocaleDateString();
         var dateEquals = new Date().toLocaleDateString() == dbDate;
 
@@ -49,7 +50,7 @@ export class DashboardComponent implements OnInit {
           id: x.payload.doc.id,
           ...x.payload.doc.data(),
           date: dateEquals ? 'Aujourd\'hui' : dbDate,
-          minutesAgo: minutesAgo > 60 || !dateEquals ? "" : minutesAgo.toString() + " min"
+          minutesAgo: !dateEquals ? "" : minutesAgo > 60 ? hoursAgo.toString() + " heures" : minutesAgo.toString() + " min",
         } as MessageGrades
       }).sort((a, b) => a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0)
     });

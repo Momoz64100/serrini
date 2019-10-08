@@ -77,7 +77,7 @@
                 <div class="feed-activity-list">
                     <div class="feed-element" *ngFor="let message of messages">
                         <div>
-                            <small class="float-right text-navy">{{ message.minutesAgo }}</small>
+                            <small class="float-right">{{ message.minutesAgo }}</small>
                             <strong>{{ message.user }}</strong>
                             <div>{{ message.message }}</div>
                             <small class="text-muted">{{ message.date }}</small>
