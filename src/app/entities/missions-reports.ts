@@ -5,6 +5,7 @@ export class MissionsReports {
     message?: string;
     entities?: string;
     date?: string;
-    isConfidential?: boolean;
+    usersMissionReaded?: string;
+    usersMissionMessagesReaded?: string;
     creationDate?: Date;
 }

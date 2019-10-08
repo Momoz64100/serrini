@@ -32,3 +32,14 @@ export const activeDatePicker = function (value: string) {
 export const concatUserName = function (prenom: string, nom: string) {
     return prenom + ' ' + nom;
 }
+
+export const fillStringByUserId = function(chaine: string, userId: string) {
+    if (!chaine.includes(userId))
+        return chaine += ";" + userId;
+
+    return chaine;
+}
+
+export const getStringArrayByChaine = function(chaine: string) {
+    return chaine.split(";");
+}

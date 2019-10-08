@@ -1,3 +1,23 @@
 .modal-body p {
     text-align: center;
 }
+
+.feed-activity-list {
+    text-align: left;
+    padding: 15px;
+}
+
+.media-body {
+    button {
+        float: left;
+    }
+
+    .media-message {
+        font-size: 13px;
+    }
+}
+
+.social-comment {
+    padding: 0px 10px 10px 10px;
+    margin: 0 !important;
+}

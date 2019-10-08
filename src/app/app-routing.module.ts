@@ -20,7 +20,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'effectifs', component: EffectifsComponent },
-      { path: 'rapports-missions', component: MissionsReportsComponent },
+      { path: 'rapports', component: MissionsReportsComponent },
       { path: 'finances', component: FinancesComponent },
       { path: 'registre', component: AnnuaireComponent },
       { path: 'stocks', component: WeedComponent },

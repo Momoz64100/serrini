@@ -39,7 +39,7 @@ export class UserService {
   }
 
   updateAllUserNewReport() {
-    firebase.firestore().collection(this.basePath).get().then(x => {
+    firebase.firestore().collection(this.basePath).get().then(x => {      
       x.forEach(data => {
         this.db.doc(this.basePath + data.id).update({ newReport: true });
       })
