@@ -9,7 +9,6 @@ export class Users {
     tel?: string;
     illegalTel?: string;
     accountNumber?: string;
-    famille?: string;
     roles?: string;
     newReport?: boolean;
     creationDate?: string;
